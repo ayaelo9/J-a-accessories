@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement par carte</title>
+    <link rel="stylesheet" href="css/Styles.css">
+</head>
+<body>
+    <header>
+        <a href="Index.html" class="brand-link">
+            <div class="brand">
+                <img src="Logo.png" alt="Logo Jéa Accessoires" class="logo">
+                <h1>Jéa Accessoires</h1>
+            </div>
+        </a>
+    </header>
+
+    <main class="about-section">
+        <h2>Paiement par carte</h2>
+        <p>Merci d'avoir choisi le paiement par carte. Veuillez vérifier les informations de votre commande ci-dessous.</p>
+
+        <div id="order-summary" class="payment-summary"></div>
+
+        <p>Sur cette page, vous pouvez compléter le paiement en carte. Ce site ne gère pas de paiement réel, mais vous pouvez simuler le processus.</p>
+
+        <div class="checkout-group">
+            <a class="confirm-order-button" href="Index.html">Retour à l'accueil</a>
+        </div>
+    </main>
+
+    <script>
+        const orderData = JSON.parse(sessionStorage.getItem('cardPaymentOrder') || 'null');
+        const summary = document.getElementById('order-summary');
+
+        if (!orderData) {
+            summary.innerHTML = '<p>Aucune commande en attente. Retournez au panier pour refaire votre commande.</p>';
+        } else {
+            const itemsHtml = orderData.items.map(item => `<li>${item.product} — €${item.price.toFixed(2)}</li>`).join('');
+            summary.innerHTML = `
+                <div class="checkout-group">
+                    <p><strong>Nom :</strong> ${orderData.name}</p>
+                    <p><strong>Téléphone :</strong> ${orderData.phone}</p>
+                    <p><strong>Adresse :</strong> ${orderData.address}</p>
+                    <p><strong>Mode de paiement :</strong> Carte</p>
+                </div>
+                <div class="checkout-group">
+                    <p><strong>Articles :</strong></p>
+                    <ul style="padding-left: 20px; color: #7a5b5e;">${itemsHtml}</ul>
+                    <p><strong>Total :</strong> €${orderData.total.toFixed(2)}</p>
+                </div>
+                <p>Veuillez suivre les instructions de votre terminal de paiement.</p>
+            `;
+        }
+    </script>
+</body>
+</html>

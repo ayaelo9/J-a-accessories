@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Jéa Accessoires</title>
+    <link rel="icon" href="Logo.png" type="image/png">
+    <link rel="stylesheet" href="css/Styles.css">
+</head>
+<body>
+
+<header>
+    <a href="Index.html" class="brand-link">
+        <div class="brand">
+            <img src="Logo.png" alt="Logo Jéa Accessoires" class="logo">
+            <h1>Jéa Accessoires</h1>
+        </div>
+    </a>
+    <div class="cart" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+</header>
+
+<div id="cart-panel">
+    <div class="cart-panel-header">
+        <h2>Votre panier</h2>
+        <button class="close-cart" onclick="toggleCart()">×</button>
+    </div>
+    <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
+    <ul id="cart-items"></ul>
+    <div id="checkout-form" class="checkout-form">
+        <h3>Informations personnelles</h3>
+        <div class="checkout-group">
+            <label for="customer-name-order">Nom complet</label>
+            <input id="customer-name-order" type="text" placeholder="Nom complet">
+        </div>
+        <div class="checkout-group">
+            <label for="customer-phone">Téléphone</label>
+            <input id="customer-phone" type="text" placeholder="Téléphone">
+        </div>
+        <div class="checkout-group">
+            <label for="customer-address">Adresse de livraison</label>
+            <textarea id="customer-address" rows="3" placeholder="Adresse"></textarea>
+        </div>
+        <div class="checkout-group payment-method">
+            <p>Mode de paiement :</p>
+            <label><input type="radio" name="payment-method" value="cash" checked> Espèces</label>
+            <label><input type="radio" name="payment-method" value="card"> Carte</label>
+        </div>
+        <button type="button" class="confirm-order-button" onclick="confirmOrder()">Confirmer la commande</button>
+    </div>
+    <div class="cart-summary">
+        <p id="cart-total">Total: €0.00</p>
+        <button class="checkout-button" onclick="checkout()">Payer</button>
+    </div>
+</div>
+
+<nav>
+            <a class="nav-home" href="Accueil.html">Accueil</a>
+            <a class="nav-collections" href="Collections.html#category">Collections</a>
+            <a class="nav-contact" href="Contact.html">Contact</a>
+    </nav>
+
+<section class="about-section">
+    <h2>Bienvenue chez Joia Accessoires</h2>
+    <p>Notre boutique propose des bijoux élégants, modernes et fabriqués pour tous les styles. Nous vendons des colliers, bracelets et bagues pensés pour apporter une touche raffinée à votre tenue.</p>
+    <p>Chaque pièce est sélectionnée avec soin pour offrir qualité et douceur, tout en restant accessible. Que vous cherchiez un cadeau spécial ou un bijou de tous les jours, vous trouverez ici des accessoires uniques.</p>
+    <ul>
+        <li>Colliers en or et argent</li>
+        <li>Bracelets chics et raffinés</li>
+        <li>Bagues élégantes pour toutes occasions</li>
+    </ul>
+</section>
+
+<footer class="site-footer">
+    <p>Jéa Accessoires — Bijoux féminins et élégants</p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jéa Accessoires</title>
+    <link rel="icon" href="Logo.png" type="image/png">
+    <link rel="stylesheet" href="css/Styles.css">
+</head>
+
+    <body>
+
+        <header>
+            <a href="Index.html" class="brand-link">
+                <div class="brand">
+                    <img src="Logo.png" class="logo" alt="Logo Jéa Accessoires">
+                    <h1>Jéa Accessoires</h1>
+                </div>
+            </a>
+
+            <div class="cart" onclick="toggleCart()">
+                🛒 <span id="cart-count">0</span>
+            </div>
+        </header>
+
+        <div id="cart-panel">
+            <div class="cart-panel-header">
+                <h2>Votre panier</h2>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
+            <ul id="cart-items"></ul>
+    <div id="checkout-form" class="checkout-form">
+        <h3>Informations personnelles</h3>
+        <div class="checkout-group">
+            <label for="customer-name-order">Nom complet</label>
+            <input id="customer-name-order" type="text" placeholder="Nom complet">
+        </div>
+        <div class="checkout-group">
+            <label for="customer-phone">Téléphone</label>
+            <input id="customer-phone" type="text" placeholder="Téléphone">
+        </div>
+        <div class="checkout-group">
+            <label for="customer-address">Adresse de livraison</label>
+            <textarea id="customer-address" rows="3" placeholder="Adresse"></textarea>
+        </div>
+        <div class="checkout-group payment-method">
+            <p>Mode de paiement :</p>
+            <label><input type="radio" name="payment-method" value="cash" checked> Espèces</label>
+            <label><input type="radio" name="payment-method" value="card"> Carte</label>
+        </div>
+        <button type="button" class="confirm-order-button" onclick="confirmOrder()">Confirmer la commande</button>
+    </div>
+                <button class="checkout-button" onclick="checkout()">Payer</button>
+            </div>
+        </div>
+
+        <nav>
+            <a class="nav-home" href="Accueil.html">Accueil</a>
+            <a class="nav-collections" href="Collections.html#category">Collections</a>
+            <a class="nav-contact" href="Contact.html">Contact</a>
+        </nav>
+
+        <!-- HERO -->
+        <section class="hero">
+            <h2>Bienvenue chez Jéa Accessoires</h2>
+        </section>
+
+        <!-- COLLECTIONS PREVIEW -->
+        <section class="collections-preview">
+            <h2>Collections en vedette</h2>
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <img src="collier du papillant.jpeg" alt="Collier papillon">
+                    <h3>Collier Papillon</h3>
+                </div>
+                <div class="collection-card">
+                    <img src="bracelet de cheville.jpeg" alt="Bracelet de cheville">
+                    <h3>Bracelet de cheville</h3>
+                </div>
+                <div class="collection-card">
+                    <img src="collier de Fleur.jpeg" alt="Collier de fleur">
+                    <h3>Collier de fleur</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEXTO BONITO -->
+        <section class="about-section">
+            <div class="about-box">
+
+                <p>
+                Notre boutique propose des bijoux élégants, modernes et fabriqués pour tous les styles.
+                Nous vendons des colliers, bracelets et bagues pensés pour apporter une touche raffinée à votre tenue.
+                </p>
+
+                <p>
+                Chaque pièce est sélectionnée avec soin pour offrir qualité et douceur, tout en restant accessible.
+                Que vous cherchiez un cadeau spécial ou un bijou de tous les jours, vous trouverez ici des accessoires uniques.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- PRODUCTOS -->
+        <section class="products">
+
+<a class="card" href="Collections.html?cat=collier" data-name="Collier de fleur" data-keywords="collier fleur flor de fleur colgante">
+                <img src="colection 2.jpeg" alt="Collier de fleur">
+            </a>
+
+            <a class="card" href="Collections.html?cat=bracelet" data-name="Bracelet chic" data-keywords="bracelet pulsera chic elegante">
+                <img src="La colection de bijoux.jpeg" alt="Bracelet chic">
+            </a>
+
+            <a class="card" href="Collections.html?cat=bracelet" data-name="Bracelet de cheville" data-keywords="bracelet cheville tobillo pulsera de tobillo">     
+                <img src="collection 3.jpeg" alt="Bracelet de cheville">
+            </a>
+
+            <a class="card" href="Collections.html?cat=collier" data-name="Collier papillon" data-keywords="collier papillon butterfly mariposa">
+                <img src="collection du fleur.jpeg" alt="Collier papillon">
+            </a>
+
+        </section>
+
+ <!-- ENQUÊTE -->
+        <section class="survey-section">
+            <h2>Enquête sur notre service</h2>
+            <p>Votre avis nous aide à nous améliorer. Dites-nous ce que vous pensez de notre accueil et de nos produits.</p>
+            <form class="survey-form" action="#" method="post">
+                <label for="customer-name">Nom (facultatif) :</label>
+                <input id="customer-name" name="customer-name" type="text" placeholder="Votre nom">
+
+                <label>Comment évalueriez-vous notre service ?</label>
+                <div class="survey-options">
+                    <label><input type="radio" name="service-rating" value="5"> Excellent</label>
+                    <label><input type="radio" name="service-rating" value="4"> Très bien</label>
+                    <label><input type="radio" name="service-rating" value="3"> Bien</label>
+                    <label><input type="radio" name="service-rating" value="2"> Moyen</label>
+                    <label><input type="radio" name="service-rating" value="1"> Mauvais</label>
+                </div>
+
+                <label for="service-feedback">Que pouvons-nous améliorer ?</label>
+                <textarea id="service-feedback" name="service-feedback" rows="4" placeholder="Écrivez votre commentaire..."></textarea>
+
+                <button type="submit">Envoyer l'enquête</button>
+            </form>
+        </section>
+
+        <footer class="site-footer">
+            <p>Jéa Accessoires — Bijoux féminins et élégants</p>
+        </footer>
+
+        <script src="js/script.js"></script>
+      
+    </body>
+</html>
