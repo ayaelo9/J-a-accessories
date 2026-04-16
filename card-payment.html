@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <a href="Index.html" class="brand-link">
+        <a href="index.html" class="brand-link">
             <div class="brand">
                 <img src="Logo.png" alt="Logo Jéa Accessoires" class="logo">
                 <h1>Jéa Accessoires</h1>
@@ -22,19 +22,35 @@
 
         <div id="order-summary" class="payment-summary"></div>
 
-        <p>Sur cette page, vous pouvez compléter le paiement en carte. Ce site ne gère pas de paiement réel, mais vous pouvez simuler le processus.</p>
+        <form id="payment-form" class="payment-form" novalidate>
+            <div class="checkout-group">
+                <label for="payment-phone">Téléphone mobile</label>
+                <input id="payment-phone" type="tel" inputmode="tel" placeholder="+212600000000" required pattern="^\+?[0-9]{9,15}$" title="Entrez un numéro de téléphone mobile valide avec uniquement des chiffres et un + facultatif">
+            </div>
+            <div class="checkout-group">
+                <label for="payment-email">E-mail</label>
+                <input id="payment-email" type="email" placeholder="exemple@domaine.com" required>
+            </div>
+            <div id="payment-error" class="payment-error" aria-live="polite"></div>
+            <button id="confirm-payment-button" class="confirm-order-button" type="button">Confirmer paiement</button>
+        </form>
 
         <div class="checkout-group">
-            <a class="confirm-order-button" href="Index.html">Retour à l'accueil</a>
+            <a class="confirm-order-button" href="index.html">Retour à l'accueil</a>
         </div>
     </main>
 
     <script>
         const orderData = JSON.parse(sessionStorage.getItem('cardPaymentOrder') || 'null');
         const summary = document.getElementById('order-summary');
+        const paymentPhone = document.getElementById('payment-phone');
+        const paymentEmail = document.getElementById('payment-email');
+        const paymentError = document.getElementById('payment-error');
+        const confirmPaymentButton = document.getElementById('confirm-payment-button');
 
         if (!orderData) {
             summary.innerHTML = '<p>Aucune commande en attente. Retournez au panier pour refaire votre commande.</p>';
+            document.getElementById('payment-form').style.display = 'none';
         } else {
             const itemsHtml = orderData.items.map(item => `<li>${item.product} — €${item.price.toFixed(2)}</li>`).join('');
             summary.innerHTML = `
@@ -51,6 +67,36 @@
                 </div>
                 <p>Veuillez suivre les instructions de votre terminal de paiement.</p>
             `;
+
+            if (paymentPhone) {
+                paymentPhone.value = orderData.phone || '';
+            }
+
+            confirmPaymentButton.addEventListener('click', () => {
+                paymentError.textContent = '';
+                paymentError.style.color = '#d00000';
+
+                if (!paymentPhone.checkValidity()) {
+                    paymentError.textContent = 'Téléphone invalide : entrez un numéro mobile correct, uniquement chiffres et un + facultatif.';
+                    paymentPhone.reportValidity();
+                    return;
+                }
+                if (!paymentEmail.checkValidity()) {
+                    paymentError.textContent = 'E-mail invalide : entrez une adresse e-mail valide avec @.';
+                    paymentEmail.reportValidity();
+                    return;
+                }
+
+                const emailValue = paymentEmail.value.trim();
+                summary.innerHTML += `
+                    <div class="checkout-group">
+                        <p><strong>Email :</strong> ${emailValue}</p>
+                    </div>
+                `;
+
+                paymentError.textContent = 'Paiement confirmé. Merci !';
+                paymentError.style.color = '#008000';
+            });
         }
     </script>
 </body>

@@ -196,10 +196,12 @@ function searchProducts() {
     });
 
     const message = document.getElementById("search-message");
-    if (query !== "" && !found) {
-        message.textContent = "Aucun produit trouvé.";
-    } else {
-        message.textContent = "";
+    if (message) {
+        if (query !== "" && !found) {
+            message.textContent = "Aucun produit trouvé.";
+        } else {
+            message.textContent = "";
+        }
     }
 }
 
