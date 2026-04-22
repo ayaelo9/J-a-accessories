@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bracelet - Collection</title>
+    <link rel="icon" href="Logo.png" type="image/png">
+    <link rel="stylesheet" href="css/Styles.css">
+</head>
+<body>
+<header>
+    <a href="index.html" class="brand-link">
+        <div class="brand">
+            <img src="Logo.png" alt="Logo Jéa Accessoires" class="logo">
+            <h1>Jéa Accessoires</h1>
+        </div>
+    </a>
+    <div class="cart" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+</header>
+
+<div id="cart-panel">
+    <div class="cart-panel-header">
+        <h2>votre panier</h2>
+        <button class="close-cart" onclick="toggleCart()">×</button>
+    </div>
+    <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
+    <ul id="cart-items"></ul>
+    <div id="checkout-form" class="checkout-form">
+        <h3>Informations personnelles</h3>
+        <div class="checkout-group">
+            <label for="customer-name-order">Nom complet</label>
+            <input id="customer-name-order" type="text" placeholder="Nom complet">
+        </div>
+        <div class="checkout-group">
+            <label for="customer-phone">Téléphone</label>
+            <input id="customer-phone" type="text" placeholder="Téléphone">
+        </div>
+        <div class="checkout-group">
+            <label for="customer-address">Adresse de livraison</label>
+            <textarea id="customer-address" rows="3" placeholder="Adresse"></textarea>
+        </div>
+        <div class="checkout-group payment-method">
+            <p>Mode de paiement :</p>
+            <label><input type="radio" name="payment-method" value="cash" checked> Espèces</label>
+            <label><input type="radio" name="payment-method" value="card"> Carte</label>
+        </div>
+        <button type="button" class="confirm-order-button" onclick="confirmOrder()">Confirmer la commande</button>
+    </div>
+    <div class="cart-summary">
+        <p id="cart-total">Total: €0.00</p>
+        <button class="checkout-button" onclick="checkout()">Payer</button>
+    </div>
+</div>
+
+<nav>
+    <a class="nav-home" href="accueil.html">Accueil</a>
+    <a class="nav-collections" href="Collection.html">Collections</a>
+    <a class="nav-contact" href="contact.html">Contact</a>
+</nav>
+
+<section class="breadcrumb">
+    <a href="Collection.html">Collections</a> &gt; 
+    <span>Bracelet</span>
+</section>
+
+<section class="hero">
+    <h2>Bracelets</h2>
+    <p>Découvrez notre sélection de bracelets élégants et modernes.</p>
+</section>
+
+<section class="products">
+    <div class="card" data-name="Bracelet chic" data-category="bracelet" data-rating="4.2" data-keywords="bracelet pulsera chic elegante">
+        <img src="Bracelet.jpeg" alt="Bracelet chic">
+        <h3>Bracelet chic</h3>
+        <div class="rating">★ ★ ★ ★ ☆ <span>4.2</span></div>
+        <p>€29.99</p>
+        <button onclick="addToCart('Bracelet chic',29.99)">Ajouter</button>
+    </div>
+    <div class="card" data-name="Bracelet du vis" data-category="bracelet" data-rating="4.7" data-keywords="bracelet vis elegante">
+        <img src="bracelet du vis.jpeg" alt="Bracelet du vis">
+        <h3>Bracelet du vis</h3>
+        <div class="rating">★ ★ ★ ★ ☆ <span>4.7</span></div>
+        <p>€54.99</p>
+        <button onclick="addToCart('Bracelet du vis',54.99)">Ajouter</button>
+    </div>
+    <div class="card" data-name="Bracelet perlé" data-category="bracelet" data-rating="4.4" data-keywords="bracelet perle elegance">
+        <img src="bracelets du vis 2.jpeg" alt="Bracelet perlé">
+        <h3>Bracelet perlé</h3>
+        <div class="rating">★ ★ ★ ★ ☆ <span>4.4</span></div>
+        <p>€39.99</p>
+        <button onclick="addToCart('Bracelet perlé',39.99)">Ajouter</button>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <p>Jéa Accessoires — Bijoux féminins et élégants</p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

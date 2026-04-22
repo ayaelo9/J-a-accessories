@@ -99,6 +99,96 @@ nav a:focus {
     color: #a96f7d;
 }
 
+.menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 32px;
+    margin: 0 32px;
+    background: #fbe6eb;
+    border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(23, 20, 19, 0.08);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #7a5b5e;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 18px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 150px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    z-index: 20;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #7a5b5e;
+}
+
+.dropdown-content a:hover {
+    background-color: #f2f2f2;
+    color: #a96f7d;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 32px 0;
+    padding: 12px 20px;
+    background: #fff4f8;
+    border: 1px solid rgba(237, 182, 188, 0.6);
+    border-radius: 16px;
+    color: #7a5b5e;
+    font-size: 0.95rem;
+}
+
+.breadcrumb a {
+    color: #7a5b5e;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.breadcrumb a:hover,
+.breadcrumb a:focus {
+    color: #a96f7d;
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    color: #c58c9a;
+}
+
+.breadcrumb span:last-child {
+    color: #a96f7d;
+    font-weight: 700;
+}
+
 .contact-section .phone-link {
     color: inherit;
     text-decoration: none;
@@ -245,6 +335,32 @@ nav a:focus {
 .category-select:focus {
     outline: none;
     box-shadow: 0 0 0 4px rgba(233, 195, 183, 0.18);
+}
+
+.category-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.category-page-link {
+    display: inline-block;
+    padding: 14px 20px;
+    background: #fff4f7;
+    color: #7a5b5e;
+    text-decoration: none;
+    border: 1px solid rgba(237, 182, 188, 0.45);
+    border-radius: 999px;
+    font-weight: 700;
+    transition: background 0.25s, color 0.25s, transform 0.15s;
+}
+
+.category-page-link:hover,
+.category-page-link:focus {
+    background: #f9e4eb;
+    color: #a96f7d;
+    transform: translateY(-1px);
 }
 
 .about-section,
@@ -418,6 +534,21 @@ nav a:focus {
 
 .survey-form button:hover {
     background: linear-gradient(135deg, #d89aa0, #dfb8b0);
+}
+
+.survey-message {
+    margin-top: 14px;
+    font-size: 0.95rem;
+    color: #2f5a45;
+    background: #eaf7ee;
+    border: 1px solid #b7e1c3;
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: none;
+}
+
+.survey-message.visible {
+    display: block;
 }
 
 .products {
