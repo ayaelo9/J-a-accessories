@@ -134,18 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlCategory = new URLSearchParams(window.location.search).get("cat");
     filterCategory(urlCategory || "all");
 
-    const surveyForm = document.querySelector(".survey-form");
-    if (surveyForm) {
-        surveyForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            const surveyMessage = document.getElementById("survey-message");
-            if (surveyMessage) {
-                surveyMessage.textContent = "Merci pour votre avis ! Votre réponse a bien été reçue.";
-                surveyMessage.classList.add("visible");
-            }
-            surveyForm.reset();
-        });
-    }
 });
 
 function normalizeText(text) {
