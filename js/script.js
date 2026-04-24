@@ -144,11 +144,6 @@ function confirmOrder() {
         checkoutForm.classList.remove("visible");
         checkoutForm.querySelectorAll("input, textarea").forEach(input => input.value = "");
     }
-
-    .catch(err => {
-        alert("Une erreur est survenue. Veuillez vérifier votre conexión.");
-        console.error(err);
-    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
