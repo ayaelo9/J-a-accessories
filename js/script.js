@@ -83,39 +83,58 @@ function checkout() {
     }
 }
 
+// --- FUNCIÓN ACTUALIZADA CON TUS IDS REALES (FRANCÉS) ---
 function confirmOrder() {
     const name = document.getElementById("customer-name-order").value.trim();
     const phone = document.getElementById("customer-phone").value.trim();
     const address = document.getElementById("customer-address").value.trim();
-    const paymentMethod = document.querySelector('input[name="payment-method"]:checked')?.value || "cash";
+
+    if (!nameInput || !phoneInput || !addressInput) {
+        console.error("Error: No se encontraron los campos del formulario en el HTML.");
+        return;
+    }
+
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const address = addressInput.value.trim();
 
     if (!name || !phone || !address) {
         alert("Veuillez compléter vos informations avant de payer.");
         return;
     }
 
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
-    const order = {
-        name,
-        phone,
-        address,
-        paymentMethod,
-        total,
-        items: cart.map(item => ({ product: item.product, price: item.price }))
-    };
-
-    if (paymentMethod === "card") {
-        sessionStorage.setItem("cardPaymentOrder", JSON.stringify(order));
-        cart = [];
-        updateCartCount();
-        renderCart();
-        window.location.href = "card-payment.html";
+    const phoneRegex = /^[0-9]{8,15}$/;
+    if (!phoneRegex.test(phone)) {
+        alert("Veuillez entrer un numéro de téléphone valide (entre 8 et 15 chiffres, sans espaces).");
         return;
     }
 
-    const paymentLabel = "espèces";
-    alert(`Commande pour ${name}\nTéléphone : ${phone}\nAdresse : ${address}\nPaiement : ${paymentLabel}\nTotal : €${total.toFixed(2)}\n\nMerci pour votre commande !`);
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const itemsString = cart.map(item => `${item.product} (€${item.price.toFixed(2)})`).join(", ");
 
+    // URL de tu formulario de pedidos en francés
+    const PEDIDOS_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScXTW6VtwM0botWLLV0xX8Q4ujxtiDogQ_Aiiy9f03zo0u3Jg/formResponse";
+    
+    const formData = new FormData();
+    
+    // Estos son los IDs que he extraído de tu formulario:
+    formData.append("entry.1709403328", name);      // Campo: Nom
+    formData.append("entry.1228221614", phone);     // Campo: Téléphone
+    formData.append("entry.681198642", address);    // Campo: Adresse de livraison
+    formData.append("entry.2123512398", itemsString); // Campo: Détails de la commande
+    formData.append("entry.1691238902", total.toFixed(2)); // Campo: Total (Asegúrate de haberlo creado)
+
+    // Envío silencioso a Google
+    fetch(PEDIDOS_FORM_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+    });
+
+    // Mensaje de éxito en francés
+    alert(`Merci ${name} !\nVotre commande de €${total.toFixed(2)} a été enregistrée.\nNous vous contacterons au ${phone} pour la livraison.`);
+
+    // Limpiar carrito y ocultar formulario
     cart = [];
     updateCartCount();
     renderCart();
@@ -123,17 +142,19 @@ function confirmOrder() {
     const checkoutForm = document.getElementById("checkout-form");
     if (checkoutForm) {
         checkoutForm.classList.remove("visible");
-        checkoutForm.querySelectorAll("input[type='text'], textarea").forEach(input => input.value = "");
-        const cashOption = checkoutForm.querySelector("input[name='payment-method'][value='cash']");
-        if (cashOption) cashOption.checked = true;
+        checkoutForm.querySelectorAll("input, textarea").forEach(input => input.value = "");
     }
+
+    .catch(err => {
+        alert("Une erreur est survenue. Veuillez vérifier votre conexión.");
+        console.error(err);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     renderCart();
     const urlCategory = new URLSearchParams(window.location.search).get("cat");
     filterCategory(urlCategory || "all");
-
 });
 
 function normalizeText(text) {
@@ -205,5 +226,3 @@ function searchProducts() {
         }
     }
 }
-
-

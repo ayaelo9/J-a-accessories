@@ -1003,3 +1003,9 @@ button {
         padding: 20px 16px;
     }
 }
+.payment-info {
+    font-size: 0.9em;
+    color: #666;
+    margin: 10px 0;
+    text-align: center;
+}
