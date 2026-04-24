@@ -28,6 +28,7 @@
         </div>
         <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
         <ul id="cart-items"></ul>
+        
         <div id="checkout-form" class="checkout-form">
             <h3>Informations personnelles</h3>
             <div class="checkout-group">
@@ -42,14 +43,15 @@
                 <label for="customer-address">Adresse de livraison</label>
                 <textarea id="customer-address" rows="3" placeholder="Adresse"></textarea>
             </div>
-            <div class="checkout-group payment-method">
-                <p>Mode de paiement :</p>
-                <label><input type="radio" name="payment-method" value="cash" checked> Espèces</label>
-                <label><input type="radio" name="payment-method" value="card"> Carte</label>
+
+            <div class="checkout-group payment-note">
+                <p style="font-size: 0.9em; color: #555; background: #f9f9f9; padding: 10px; border-radius: 5px; border-left: 3px solid #ccc;">
+                    <strong>Mode de paiement :</strong> Espèces à la livraison
+                </p>
             </div>
+
             <button type="button" class="confirm-order-button" onclick="confirmOrder()">Confirmer la commande</button>
         </div>
-        <button class="checkout-button" onclick="checkout()">Payer</button>
     </div>
 
     <nav>
