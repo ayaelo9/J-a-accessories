@@ -127,13 +127,20 @@
         <section class="survey-section">
             <h2>Enquête sur notre service</h2>
             <p>Votre avis nous aide à nous améliorer. Dites-nous ce que vous pensez de notre accueil et de nos produits.</p>
-            <form action="https://docs.google.com/forms/d/e/1FAIpQLScsAKGWd2LiJ6Uuiendv5Vxeb7WNu8qvgq5mGDiSxnsk-SYug/formResponse" class="survey-form" action="" method="post">
+        
+            <form 
+                action="https://docs.google.com/forms/d/e/1FAIpQLScsAKGWd2LiJ6Uuiendv5Vxeb7WNu8qvgq5mGDiSxnsk-SYug/formResponse" 
+                method="POST" 
+                target="hidden_iframe" 
+                onsubmit="submitted=true;" 
+                class="survey-form">
+                
                 <label for="customer-name">Nom :</label>
-                <input id="customer-name" name="entry.138402500" type="text" placeholder="Votre nom">
+                <input id="customer-name" name="entry.138402500" type="text" placeholder="Votre nom" required>
 
                 <label>Comment évalueriez-vous notre service ?</label>
                 <div class="survey-options">
-                    <label><input type="radio" name="entry.318285220" value="5"> Excellent</label>
+                    <label><input type="radio" name="entry.318285220" value="5" checked> Excellent</label>
                     <label><input type="radio" name="entry.318285220" value="4"> Très bien</label>
                     <label><input type="radio" name="entry.318285220" value="3"> Bien</label>
                     <label><input type="radio" name="entry.318285220" value="2"> Moyen</label>
