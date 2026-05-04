@@ -1033,3 +1033,55 @@ header {
 .main-nav a:hover {
     color: #d4a373; /* Cambio de color al pasar el mouse */
 }
+
+/* Contenedor principal para centrar la tarjeta */
+.welcome-card-container {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    background-color: #fce4ec; /* El color rosado de fondo de tu web */
+}
+
+/* La tarjeta blanca con bordes como en image_570444.png */
+.welcome-card {
+    background-color: #ffffff;
+    max-width: 900px;
+    padding: 40px;
+    border-radius: 30px; /* Bordes muy redondeados */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Sombra suave profesional */
+    text-align: left;
+    border: 1px solid rgba(0,0,0,0.02); /* Borde casi invisible para dar definición */
+}
+
+.welcome-title {
+    color: #a37b7b; /* El tono marrón/rosado de tu logo */
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.welcome-body p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.welcome-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.welcome-list li {
+    margin-bottom: 10px;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.welcome-list li span {
+    color: #a37b7b;
+    margin-right: 10px;
+    font-weight: bold;
+}

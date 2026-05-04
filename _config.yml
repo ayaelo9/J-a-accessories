@@ -5,3 +5,6 @@ baseurl: ""
 
 kramdown:
   input: GFM
+
+plugins:
+  - jekyll-sitemap

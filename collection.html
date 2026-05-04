@@ -25,27 +25,30 @@
         <h2>Votre panier</h2>
         <button class="close-cart" onclick="toggleCart()">×</button>
     </div>
+    
     <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
     
     <ul id="cart-items"></ul>
     
     <p id="cart-total" style="font-weight: bold; text-align: center; margin: 15px 0; font-size: 1.2em;">Total: €0.00</p>
     
+    <!-- Botón inicial para abrir el formulario -->
     <button id="pay-button" class="confirm-order-button" onclick="showCheckoutForm()" style="display:none; margin-bottom: 20px; width: 100%;">Commander</button>
     
+    <!-- Formulario de Checkout -->
     <div id="checkout-form" class="checkout-form" style="display:none;">
         <h3>Informations personnelles</h3>
         <div class="checkout-group">
             <label for="customer-name-order">Nom complet</label>
-            <input id="customer-name-order" type="text" placeholder="Nom complet">
+            <input id="customer-name-order" type="text" placeholder="Nom complet" required>
         </div>
         <div class="checkout-group">
             <label for="customer-phone">Téléphone</label>
-            <input id="customer-phone" type="tel" placeholder="Ex: 0612345678" pattern="[0-9]{8,15}" title="Veuillez entrer un numéro de téléphone valide">
+            <input id="customer-phone" type="tel" placeholder="Ex: 0612345678" required>
         </div>
         <div class="checkout-group">
             <label for="customer-address">Adresse de livraison</label>
-            <textarea id="customer-address" rows="3" placeholder="Adresse"></textarea>
+            <textarea id="customer-address" rows="3" placeholder="Adresse" required></textarea>
         </div>
 
         <div class="checkout-group payment-note">
@@ -53,28 +56,15 @@
                 <strong>Mode de paiement :</strong> Espèces à la livraison
             </p>
         </div>
-
-        <button type="button" class="confirm-order-button" onclick="confirmOrder()">Confirmer la commande</button>
+        
+        <!-- El botón de confirmar ahora está DENTRO del formulario -->
+        <button type="button" class="confirm-order-button" onclick="sendEmail()" style="width: 100%; margin-top: 10px;">
+            Confirmer la commande
+        </button>
     </div>
 </div>
 
-<nav class="menu">
-    <a class="nav-home" href="index.html">Accueil</a>
 
-    <div class="dropdown">
-        <button class="dropbtn">Collections</button>
-        <div class="dropdown-content">
-            <a href="Collier.html">Collier</a>
-            <a href="Bracelet.html">Bracelet</a>
-            <a href="Bracelet-de-cheville.html">Bracelet de cheville</a>
-            <a href="Bague.html">Bague</a>
-            <a href="Boucle-d-oreille.html">Boucle d'oreille</a>
-            <a href="Montre.html">Montre</a>
-        </div>
-    </div>
-
-    <a class="nav-contact" href="contact.html">Contact</a>
-</nav>
 
 <section class="hero">
     <h2>Nos Collections</h2>
