@@ -1010,3 +1010,26 @@ button {
     margin: 10px 0;
     text-align: center;
 }
+/* Estilo para el menú profesional */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+}
+
+.main-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #5d3a3a; /* Un tono café elegante */
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.main-nav a:hover {
+    color: #d4a373; /* Cambio de color al pasar el mouse */
+}
