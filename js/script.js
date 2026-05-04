@@ -1,41 +1,71 @@
 let cart = [];
 
-function updateCartCount() {
-    document.getElementById("cart-count").innerText = cart.length;
+function toggleCart() {
+    const panel = document.getElementById("cart-panel");
+    if (panel) panel.classList.toggle("active");
+}
+
+function addToCart(product, price) {
+    cart.push({ product, price });
+    
+    const countEl = document.getElementById("cart-count");
+    if (countEl) countEl.innerText = cart.length;
+
+    renderCart();
+    
+    const panel = document.getElementById("cart-panel");
+    if (panel) panel.classList.add("active");
+}
+
+// ESTA FUNCIÓN ES LA QUE ABRE EL CUESTIONARIO
+function showCheckoutForm() {
+    const form = document.getElementById("checkout-form");
+    const payBtn = document.getElementById("pay-button");
+    
+    if (form && payBtn) {
+        form.style.display = "block"; // Muestra el cuestionario
+        payBtn.style.display = "none";  // Esconde el botón de Commander
+        form.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
 }
 
 function renderCart() {
     const itemsList = document.getElementById("cart-items");
     const emptyMessage = document.getElementById("cart-empty");
     const totalText = document.getElementById("cart-total");
+    const payBtn = document.getElementById("pay-button");
+    const checkoutForm = document.getElementById("checkout-form");
 
-    if (!itemsList || !emptyMessage || !totalText) {
-        return;
-    }
+    if (!itemsList || !emptyMessage || !totalText) return;
 
     itemsList.innerHTML = "";
-
-    const checkoutForm = document.getElementById("checkout-form");
 
     if (cart.length === 0) {
         emptyMessage.style.display = "block";
         totalText.textContent = "Total: €0.00";
-        if (checkoutForm) {
-            checkoutForm.classList.remove("visible");
-        }
+        if (payBtn) payBtn.style.display = "none";
+        if (checkoutForm) checkoutForm.style.display = "none"; 
         return;
     }
 
+    // SI HAY PRODUCTOS:
     emptyMessage.style.display = "none";
-    let total = 0;
+    
+    // Mostramos el botón de Commander, pero NO el formulario todavía
+    if (payBtn && (!checkoutForm || checkoutForm.style.display !== "block")) {
+        payBtn.style.display = "block";
+    }
 
+    let total = 0;
     cart.forEach((item, index) => {
         const li = document.createElement("li");
         li.className = "cart-item";
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
         li.innerHTML = `
             <span>${item.product}</span>
             <span>€${item.price.toFixed(2)}</span>
-            <button onclick="removeFromCart(${index})">Eliminar</button>
+            <button onclick="removeFromCart(${index})" style="color:red; background:none; border:none; cursor:pointer;">x</button>
         `;
         itemsList.appendChild(li);
         total += item.price;
@@ -44,180 +74,17 @@ function renderCart() {
     totalText.textContent = `Total: €${total.toFixed(2)}`;
 }
 
-function addToCart(product, price) {
-    cart.push({ product, price });
-    updateCartCount();
-    renderCart();
-    const panel = document.getElementById("cart-panel");
-    if (panel && !panel.classList.contains("active")) {
-        panel.classList.add("active");
-    }
-}
-
 function removeFromCart(index) {
     cart.splice(index, 1);
-    updateCartCount();
+    const countEl = document.getElementById("cart-count");
+    if (countEl) countEl.innerText = cart.length;
     renderCart();
 }
 
-let currentCategory = "all";
-
-function toggleCart() {
-    const panel = document.getElementById("cart-panel");
-    if (!panel) {
-        return;
-    }
-    panel.classList.toggle("active");
-}
-
-function checkout() {
-    if (cart.length === 0) {
-        alert("Votre panier est vide.");
-        return;
-    }
-
-    const checkoutForm = document.getElementById("checkout-form");
-    if (checkoutForm) {
-        checkoutForm.classList.toggle("visible");
-        checkoutForm.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-}
-
-// --- FUNCIÓN ACTUALIZADA CON TUS IDS REALES (FRANCÉS) ---
-function confirmOrder() {
-    const name = document.getElementById("customer-name-order").value.trim();
-    const phone = document.getElementById("customer-phone").value.trim();
-    const address = document.getElementById("customer-address").value.trim();
-
-    if (!nameInput || !phoneInput || !addressInput) {
-        console.error("Error: No se encontraron los campos del formulario en el HTML.");
-        return;
-    }
-
-    const name = nameInput.value.trim();
-    const phone = phoneInput.value.trim();
-    const address = addressInput.value.trim();
-
-    if (!name || !phone || !address) {
-        alert("Veuillez compléter vos informations avant de payer.");
-        return;
-    }
-
-    const phoneRegex = /^[0-9]{8,15}$/;
-    if (!phoneRegex.test(phone)) {
-        alert("Veuillez entrer un numéro de téléphone valide (entre 8 et 15 chiffres, sans espaces).");
-        return;
-    }
-
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
-    const itemsString = cart.map(item => `${item.product} (€${item.price.toFixed(2)})`).join(", ");
-
-    // URL de tu formulario de pedidos en francés
-    const PEDIDOS_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScXTW6VtwM0botWLLV0xX8Q4ujxtiDogQ_Aiiy9f03zo0u3Jg/formResponse";
-    
-    const formData = new FormData();
-    
-    // Estos son los IDs que he extraído de tu formulario:
-    formData.append("entry.1709403328", name);      // Campo: Nom
-    formData.append("entry.1228221614", phone);     // Campo: Téléphone
-    formData.append("entry.681198642", address);    // Campo: Adresse de livraison
-    formData.append("entry.2123512398", itemsString); // Campo: Détails de la commande
-    formData.append("entry.1691238902", total.toFixed(2)); // Campo: Total (Asegúrate de haberlo creado)
-
-    // Envío silencioso a Google
-    fetch(PEDIDOS_FORM_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body: formData
+// Función para confirmar pedido (Asegúrate de tenerla definida)
+function sendEmail() {
+    emailjs.send("service_id", "template_id", {
+        to_email:"jeaaccessories76@gmail.com",
+        product: "produit choisi"
     });
-
-    // Mensaje de éxito en francés
-    alert(`Merci ${name} !\nVotre commande de €${total.toFixed(2)} a été enregistrée.\nNous vous contacterons au ${phone} pour la livraison.`);
-
-    // Limpiar carrito y ocultar formulario
-    cart = [];
-    updateCartCount();
-    renderCart();
-
-    const checkoutForm = document.getElementById("checkout-form");
-    if (checkoutForm) {
-        checkoutForm.classList.remove("visible");
-        checkoutForm.querySelectorAll("input, textarea").forEach(input => input.value = "");
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    renderCart();
-    const urlCategory = new URLSearchParams(window.location.search).get("cat");
-    filterCategory(urlCategory || "all");
-});
-
-function normalizeText(text) {
-    return text
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-}
-
-function updateCategoryActive(category) {
-    const buttons = document.querySelectorAll(".category-buttons button");
-    buttons.forEach(button => {
-        button.classList.toggle("active", button.dataset.category === category);
-    });
-}
-
-function filterCategory(category) {
-    currentCategory = category || "all";
-    const cards = document.querySelectorAll(".products .card");
-    const hasCategory = Array.from(cards).some(card => card.dataset.category);
-    cards.forEach(card => {
-        if (!hasCategory) {
-            card.style.display = "";
-            return;
-        }
-        const cardCategory = card.dataset.category || "all";
-        const matchesCategory = currentCategory === "all" || cardCategory === currentCategory;
-        card.style.display = matchesCategory ? "" : "none";
-    });
-    updateCategoryActive(currentCategory);
-    searchProducts();
-}
-
-function searchProducts() {
-    const input = document.getElementById("search-input");
-    if (!input) {
-        return;
-    }
-
-    const query = input.value.trim();
-    const normalizedQuery = normalizeText(query);
-    const cards = document.querySelectorAll(".products .card");
-    let found = false;
-
-    const hasCategory = Array.from(cards).some(card => card.dataset.category);
-    cards.forEach(card => {
-        const name = card.getAttribute("data-name") || card.querySelector("h3")?.textContent || "";
-        const rating = card.getAttribute("data-rating") || card.querySelector(".rating span")?.textContent || "";
-        const keywords = card.getAttribute("data-keywords") || "";
-        const altText = card.querySelector("img")?.alt || "";
-        const content = `${name} ${rating} ${keywords} ${altText}`;
-        const normalizedContent = normalizeText(content);
-        const matchesSearch = normalizedQuery === "" || normalizedContent.includes(normalizedQuery);
-        const cardCategory = card.dataset.category || "all";
-        const matchesCategory = !hasCategory || currentCategory === "all" || cardCategory === currentCategory;
-        const show = matchesSearch && matchesCategory;
-        card.style.display = show ? "" : "none";
-        if (show && normalizedQuery !== "") {
-            found = true;
-        }
-    });
-
-    const message = document.getElementById("search-message");
-    if (message) {
-        if (query !== "" && !found) {
-            message.textContent = "Aucun produit trouvé.";
-        } else {
-            message.textContent = "";
-        }
-    }
 }

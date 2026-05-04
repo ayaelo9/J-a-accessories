@@ -25,9 +25,14 @@
         <button class="close-cart" onclick="toggleCart()">×</button>
     </div>
     <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
+    
     <ul id="cart-items"></ul>
     
-    <div id="checkout-form" class="checkout-form">
+    <p id="cart-total" style="font-weight: bold; text-align: center; margin: 15px 0; font-size: 1.2em;">Total: €0.00</p>
+    
+    <button id="pay-button" class="confirm-order-button" onclick="showCheckoutForm()" style="display:none; margin-bottom: 20px; width: 100%;">Commander</button>
+    
+    <div id="checkout-form" class="checkout-form" style="display:none;">
         <h3>Informations personnelles</h3>
         <div class="checkout-group">
             <label for="customer-name-order">Nom complet</label>

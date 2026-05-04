@@ -22,37 +22,43 @@
     </header>
 
     <div id="cart-panel">
-        <div class="cart-panel-header">
-            <h2>Votre panier</h2>
-            <button class="close-cart" onclick="toggleCart()">×</button>
-        </div>
-        <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
-        <ul id="cart-items"></ul>
-        
-        <div id="checkout-form" class="checkout-form">
-            <h3>Informations personnelles</h3>
-            <div class="checkout-group">
-                <label for="customer-name-order">Nom complet</label>
-                <input id="customer-name-order" type="text" placeholder="Nom complet">
-            </div>
-            <div class="checkout-group">
-                <label for="customer-phone">Téléphone</label>
-                <input id="customer-phone" type="" placeholder="Téléphone">
-            </div>
-            <div class="checkout-group">
-                <label for="customer-address">Adresse de livraison</label>
-                <textarea id="customer-address" rows="3" placeholder="Adresse"></textarea>
-            </div>
-
-            <div class="checkout-group payment-note">
-                <p style="font-size: 0.9em; color: #555; background: #f9f9f9; padding: 10px; border-radius: 5px; border-left: 3px solid #ccc;">
-                    <strong>Mode de paiement :</strong> Espèces à la livraison
-                </p>
-            </div>
-
-            <button type="button" class="confirm-order-button" onclick="confirmOrder()">Confirmer la commande</button>
-        </div>
+    <div class="cart-panel-header">
+        <h2>Votre panier</h2>
+        <button class="close-cart" onclick="toggleCart()">×</button>
     </div>
+    <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
+    
+    <ul id="cart-items"></ul>
+    
+    <p id="cart-total" style="font-weight: bold; text-align: center; margin: 15px 0; font-size: 1.2em;">Total: €0.00</p>
+    
+    <button id="pay-button" class="confirm-order-button" onclick="showCheckoutForm()" style="display:none; margin-bottom: 20px; width: 100%;">Commander</button>
+    
+    <div id="checkout-form" class="checkout-form" style="display:none;">
+        <h3>Informations personnelles</h3>
+        <div class="checkout-group">
+            <label for="customer-name-order">Nom complet</label>
+            <input id="customer-name-order" type="text" placeholder="Nom complet">
+        </div>
+        <div class="checkout-group">
+            <label for="customer-phone">Téléphone</label>
+            <input id="customer-phone" type="tel" placeholder="Ex: 0612345678" pattern="[0-9]{8,15}" title="Veuillez entrer un numéro de téléphone valide">
+        </div>
+        <div class="checkout-group">
+            <label for="customer-address">Adresse de livraison</label>
+            <textarea id="customer-address" rows="3" placeholder="Adresse"></textarea>
+        </div>
+
+        <div class="checkout-group payment-note">
+            <p style="font-size: 0.9em; color: #555; background: #f9f9f9; padding: 10px; border-radius: 5px; border-left: 3px solid #ccc;">
+                <strong>Mode de paiement :</strong> Espèces à la livraison
+            </p>
+        </div>
+
+        <button type="button" class="confirm-order-button" onclick="sendEmail()">Confirmer la commande</button>
+
+    </div>
+</div>
 
     <nav>
         <a class="nav-home" href="accueil.html">Accueil</a>

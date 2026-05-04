@@ -670,20 +670,21 @@ button {
 
 #cart-panel {
     position: fixed;
-    right: -340px;
     top: 0;
-    width: 340px;
-    height: 100%;
-    background: rgba(255,255,255,0.98);
-    box-shadow: -12px 0 40px rgba(233, 195, 183, 0.18);
-    padding: 28px;
-    transition: right 0.35s ease;
-    overflow-y: auto;
-    z-index: 20;
+    right: -100%; /* Empieza fuera de la pantalla a la derecha */
+    width: 350px; /* O el ancho que prefieras */
+    height: 100vh;
+    background-color: #fff; /* Mantén tu color de fondo */
+    z-index: 9999; /* ESTO ES CLAVE: Para que salga por encima de todo */
+    transition: right 0.3s ease; /* Para que entre suavemente */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
 }
 
 #cart-panel.active {
-    right: 0;
+    right: 0; 
 }
 
 #cart-panel h2 {
@@ -711,7 +712,7 @@ button {
 }
 
 .checkout-form.visible {
-    display: block;
+    display: block !important;
 }
 
 .payment-summary {

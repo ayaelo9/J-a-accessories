@@ -18,14 +18,20 @@
     <div class="cart" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
 </header>
 
-<div id="cart-panel">
+<<div id="cart-panel">
     <div class="cart-panel-header">
-        <h2>votre panier</h2>
+        <h2>Votre panier</h2>
         <button class="close-cart" onclick="toggleCart()">×</button>
     </div>
     <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
+    
     <ul id="cart-items"></ul>
-    <div id="checkout-form" class="checkout-form">
+    
+    <p id="cart-total" style="font-weight: bold; text-align: center; margin: 15px 0; font-size: 1.2em;">Total: €0.00</p>
+    
+    <button id="pay-button" class="confirm-order-button" onclick="showCheckoutForm()" style="display:none; margin-bottom: 20px; width: 100%;">Commander</button>
+    
+    <div id="checkout-form" class="checkout-form" style="display:none;">
         <h3>Informations personnelles</h3>
         <div class="checkout-group">
             <label for="customer-name-order">Nom complet</label>
@@ -39,16 +45,14 @@
             <label for="customer-address">Adresse de livraison</label>
             <textarea id="customer-address" rows="3" placeholder="Adresse"></textarea>
         </div>
-        <div class="checkout-group payment-method">
-            <p>Mode de paiement :</p>
-            <label><input type="radio" name="payment-method" value="cash" checked> Espèces</label>
-            <label><input type="radio" name="payment-method" value="card"> Carte</label>
+
+        <div class="checkout-group payment-note">
+            <p style="font-size: 0.9em; color: #555; background: #f9f9f9; padding: 10px; border-radius: 5px; border-left: 3px solid #ccc;">
+                <strong>Mode de paiement :</strong> Espèces à la livraison
+            </p>
         </div>
+
         <button type="button" class="confirm-order-button" onclick="confirmOrder()">Confirmer la commande</button>
-    </div>
-    <div class="cart-summary">
-        <p id="cart-total">Total: €0.00</p>
-        <button class="checkout-button" onclick="checkout()">Payer</button>
     </div>
 </div>
 
@@ -75,7 +79,7 @@
         <h3>Montre élégante</h3>
         <div class="rating">★ ★ ★ ★ ☆ <span>4.5</span></div>
         <p>€89.99</p>
-        <button onclick="addToCart('Montre élégante',89.99)">Ajouter</button>
+        <button class="btn-add-to-cart" onclick="addToCart('Montre élégante',89.99)">Ajouter</button>
     </div>
 </section>
 
