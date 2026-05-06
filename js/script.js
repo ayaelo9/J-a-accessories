@@ -116,7 +116,7 @@ function sendEmail() {
     };
 
     // REEMPLAZA ESTOS DOS CON TUS DATOS REALES DE EMAILJS
-    emailjs.send("service_8k2l1pa", "template_t99h5yw", templateParams)
+    emailjs.send("service_ozm6sin", "template_t99h5yw", templateParams)
         .then(() => {
             alert("Merci ! Votre commande a été confirmée.");
             cart = [];
