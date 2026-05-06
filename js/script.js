@@ -115,17 +115,24 @@ function sendEmail() {
         address: address
     };
 
-    // REEMPLAZA ESTOS DOS CON TUS DATOS REALES DE EMAILJS
-    emailjs.send("service_ozm6sin", "template_t99h5yw", templateParams)
-        .then(() => {
-            alert("Merci ! Votre commande a été confirmée.");
-            cart = [];
-            renderCart();
-            window.location.reload(); // Recarga para limpiar todo
+  // Asegúrate de usar el NUEVO ID que acabas de crear
+    const newServiceID = "EL_NUEVO_ID_QUE_CREASTE"; 
+    const templateID = "template_t99h5yw";
+    const publicKey = "sEuta_gO53voXjO8M";
+
+    emailjs.send(newServiceID, templateID, templateParams, publicKey)
+        .then(function(response) {
+        console.log("¡POR FIN FUNCIONA!", response.status, response.text);
+        alert("Merci ! Votre commande a été confirmée.");
+        cart = [];
+        renderCart();
+        window.location.reload();
         })
-        .catch((error) => {
-            alert("Erreur: " + JSON.stringify(error));
-        });
+        .catch(function(error) {
+        console.error("Error técnico:", error);
+        alert("Sigue fallando: " + error.text);
+        });"Error: " + JSON.stringify(error));
+    });
 }
 
 function removeFromCart(index) {
