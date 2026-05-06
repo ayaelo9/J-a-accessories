@@ -124,6 +124,8 @@ nav a:focus {
     font-weight: 700;
     padding: 8px 16px;
     border-radius: 18px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .dropdown-content {

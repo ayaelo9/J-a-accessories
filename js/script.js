@@ -1,39 +1,15 @@
 let cart = [];
 
-// 1. INVENTARIO MAESTRO (Aquí añades tus productos una sola vez)
+// 1. INVENTARIO MAESTRO (URLs de GitHub directas para EmailJS)
 const inventaire = {
-    "Collier de fleur": { 
-        id: "COL-001", 
-        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20de%20Fleur.jpeg" 
-    },
-    "Bracelet chic": { 
-        id: "BRA-001", 
-        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/2%20Bracelet%20.jpeg" 
-    },
-    "Bracelet de cheville": { 
-        id: "CHE-001", 
-        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20de%20cheville.jpeg" 
-    },
-    "Collier papillon": { 
-        id: "COL-002", 
-        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20du%20papillant.jpeg" 
-    },
-    "Bracelet du vis": { 
-        id: "BRA-002", 
-        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20du%20vis.jpeg" 
-    },
-    "Bracelet perlé": { 
-        id: "BRA-003", 
-        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20perlé.jpeg" 
-    },
-    "Collier lune": { 
-        id: "COL-003", 
-        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20lune.jpeg" 
-    },
-    "Bracelet doré": { 
-        id: "BRA-004", 
-        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20doré.jpeg" 
-    }
+    "Collier de fleur": { id: "COL-001", img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20de%20Fleur.jpeg" },
+    "Bracelet chic": { id: "BRA-001", img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/Bracelet.jpeg" },
+    "Bracelet de cheville": { id: "CHE-001", img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20de%20cheville.jpeg" },
+    "Collier papillon": { id: "COL-002", img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20du%20papillant.jpeg" },
+    "Bracelet du vis": { id: "BRA-002", img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20du%20vis.jpeg" },
+    "Bracelets du vis": { id: "BRA-003", img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelets%20du%20vis%202.jpeg" },
+    "Collier du cœur": { id: "COL-003", img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20du%20c%C5%93ur.jpeg" },
+    "Ensemble fleur": { id: "ENS-001", img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collection%20du%20fleur.jpeg" }
 };
 
 function toggleCart() {
@@ -41,7 +17,7 @@ function toggleCart() {
     if (panel) panel.classList.toggle("active");
 }
 
-// 2. AGREGAR AL CARRITO (Detecta el ID automáticamente)
+// 2. AGREGAR AL CARRITO
 function addToCart(productName, price) {
     const info = inventaire[productName];
     
@@ -50,13 +26,20 @@ function addToCart(productName, price) {
             id: info.id, 
             product: productName, 
             price: price, 
-            img: info.img // Guardamos la URL de GitHub aquí
+            img: info.img 
         });
+    } else {
+        // Fallback por si el nombre no coincide exacto con el inventario
+        cart.push({ id: "GEN-000", product: productName, price: price, img: "" });
     }
 
-    document.getElementById("cart-count").innerText = cart.length;
+    const countElem = document.getElementById("cart-count");
+    if(countElem) countElem.innerText = cart.length;
+    
     renderCart();
-    document.getElementById("cart-panel").classList.add("active");
+    
+    const panel = document.getElementById("cart-panel");
+    if (panel) panel.classList.add("active");
 }
 
 function renderCart() {
@@ -79,6 +62,7 @@ function renderCart() {
     }
 
     emptyMessage.style.display = "none";
+    // Solo mostramos el botón "Commander" si el formulario no está ya abierto
     if (payBtn && (!checkoutForm || checkoutForm.style.display !== "block")) {
         payBtn.style.display = "block";
     }
@@ -86,11 +70,12 @@ function renderCart() {
     let total = 0;
     cart.forEach((item, index) => {
         const li = document.createElement("li");
-        li.className = "cart-item";
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.marginBottom = "10px";
         li.innerHTML = `
             <span><strong>[${item.id}]</strong> ${item.product}</span>
-            <span>€${item.price.toFixed(2)}</span>
-            <button onclick="removeFromCart(${index})" style="color:red; background:none; border:none; cursor:pointer;">x</button>
+            <span>€${item.price.toFixed(2)} <button onclick="removeFromCart(${index})" style="color:red; background:none; border:none; cursor:pointer; margin-left:10px;">✕</button></span>
         `;
         itemsList.appendChild(li);
         total += item.price;
@@ -99,51 +84,54 @@ function renderCart() {
     totalText.textContent = `Total: €${total.toFixed(2)}`;
 }
 
-// 3. ENVÍO DE EMAIL AUTOMATIZADO
+// 3. ENVÍO DE EMAIL
 function sendEmail() {
     const name = document.getElementById("customer-name-order").value;
     const phone = document.getElementById("customer-phone").value;
     const address = document.getElementById("customer-address").value;
 
     if (!name || !phone || !address) {
-        alert("Veuillez remplir tous les champs.");
+        alert("Veuillez remplir tous les campos.");
         return;
     }
 
-    // Preparamos la lista de productos exactamente como la pide tu HTML ({{#orders}})
+    // Estructura para el bloque {{#orders}} de EmailJS
     const listaProductos = cart.map(item => ({
         name: item.product,
-        units: 1, // Puedes cambiar esto si añades cantidad más adelante
+        units: 1,
         price: item.price.toFixed(2),
-        image_url: "https://tudominio.com/" + item.img // URL completa de la imagen
+        image_url: item.img // Usamos la URL que ya tenemos en el inventario
     }));
 
     const totalCalculado = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
 
     const templateParams = {
         from_name: name,
-        email: "cliente@correo.com", // Aquí puedes pedir el email al cliente si quieres
-        order_id: Math.floor(Math.random() * 1000000),
-        orders: listaProductos, // Esto llena el bloque {{#orders}}
+        order_id: "#" + Math.floor(Math.random() * 1000000),
+        orders: listaProductos, 
         "cost.shipping": "0.00",
-        "cost.tax": "0.00",
         "cost.total": totalCalculado,
         phone: phone,
         address: address
     };
 
+    // REEMPLAZA ESTOS DOS CON TUS DATOS REALES DE EMAILJS
     emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
         .then(() => {
-            alert("Commande confirmée !");
+            alert("Merci ! Votre commande a été confirmée.");
             cart = [];
             renderCart();
-            window.location.reload();
+            window.location.reload(); // Recarga para limpiar todo
+        })
+        .catch((error) => {
+            alert("Erreur: " + JSON.stringify(error));
         });
 }
 
 function removeFromCart(index) {
     cart.splice(index, 1);
-    document.getElementById("cart-count").innerText = cart.length;
+    const countElem = document.getElementById("cart-count");
+    if(countElem) countElem.innerText = cart.length;
     renderCart();
 }
 
@@ -156,3 +144,20 @@ function showCheckoutForm() {
         form.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 }
+
+// 4. FILTRADO POR URL
+document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get('cat');
+    const products = document.querySelectorAll('.card');
+
+    if (category) {
+        products.forEach(product => {
+            const productCat = product.getAttribute('data-category').toLowerCase();
+            product.style.display = (productCat === category.toLowerCase()) ? 'block' : 'none';
+        });
+        
+        const title = document.querySelector('.hero h2');
+        if (title) title.textContent = "Nos " + category.charAt(0).toUpperCase() + category.slice(1) + "s";
+    }
+});
