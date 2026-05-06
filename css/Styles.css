@@ -1085,3 +1085,37 @@ header {
     margin-right: 10px;
     font-weight: bold;
 }
+
+/* Mantiene el texto negro y sin subrayado en los enlaces de la tarjeta */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.collection-card {
+    transition: transform 0.3s ease;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.collection-card:hover {
+    transform: translateY(-5px); /* Efecto sutil al pasar el mouse */
+}
+
+/* Estilo profesional para el botón Ajouter */
+.add-btn {
+    background-color: rgba(226, 146, 146, 0.69); /* El verde de tu marca */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #366a00;
+}

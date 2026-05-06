@@ -48,21 +48,39 @@
     <section class="collections-preview">
         <h2 class="section-heading">Collections en vedette</h2>
         <div class="collection-grid">
+
             <div class="collection-card">
-                <img src="collier du papillant.jpeg" alt="Collier papillon">
-                <h3>Collier Papillon</h3>
+                <a href="collections.html" class="card-link">
+                    <img src="https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20du%20papillant.jpeg" alt="Collier papillon">
+                    <h3>Collier Papillon</h3>
+                </a>
+                <button class="add-btn" onclick="addToCart('Collier papillon', 15.00)">Ajouter au panier</button>
             </div>
+
             <div class="collection-card">
-                <img src="bracelet de cheville.jpeg" alt="Bracelet de cheville">
-                <h3>Bracelet de cheville</h3>
+                <a href="collections.html" class="card-link">
+                    <img src="https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20de%20cheville.jpeg" alt="Bracelet de cheville">
+                    <h3>Bracelet de cheville</h3>
+                </a>
+                <button class="add-btn" onclick="addToCart('Bracelet de cheville', 12.50)">Ajouter au panier</button>
             </div>
+
             <div class="collection-card">
-                <img src="collier de Fleur.jpeg" alt="Collier de fleur">
-                <h3>Collier de fleur</h3>
+                <a href="collections.html" class="card-link">
+                    <img src="https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20de%20Fleur.jpeg" alt="Collier de fleur">
+                    <h3>Collier de fleur</h3>
+                </a>
+                <button class="add-btn" onclick="addToCart('Collier de fleur', 18.00)">Ajouter au panier</button>
             </div>
+
         </div>
     </section>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("sEuta_gO53voXjO8M"); 
+        })();
+    </script>
     <!-- Footer y Scripts omitidos por brevedad, mantenlos igual -->
     <script src="js/script.js"></script>
 </body>

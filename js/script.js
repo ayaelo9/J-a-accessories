@@ -2,14 +2,38 @@ let cart = [];
 
 // 1. INVENTARIO MAESTRO (Aquí añades tus productos una sola vez)
 const inventaire = {
-    "Collier de fleur": "COL-001",
-    "Bracelet chic": "BRA-001",
-    "Bracelet de cheville": "CHE-001",
-    "Collier papillon": "COL-002",
-    "Bracelet du vis": "BRA-002",
-    "Bracelet perlé": "BRA-003",
-    "Collier lune": "COL-003",
-    "Bracelet doré": "BRA-004"
+    "Collier de fleur": { 
+        id: "COL-001", 
+        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20de%20Fleur.jpeg" 
+    },
+    "Bracelet chic": { 
+        id: "BRA-001", 
+        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/2%20Bracelet%20.jpeg" 
+    },
+    "Bracelet de cheville": { 
+        id: "CHE-001", 
+        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20de%20cheville.jpeg" 
+    },
+    "Collier papillon": { 
+        id: "COL-002", 
+        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20du%20papillant.jpeg" 
+    },
+    "Bracelet du vis": { 
+        id: "BRA-002", 
+        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20du%20vis.jpeg" 
+    },
+    "Bracelet perlé": { 
+        id: "BRA-003", 
+        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20perlé.jpeg" 
+    },
+    "Collier lune": { 
+        id: "COL-003", 
+        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20lune.jpeg" 
+    },
+    "Bracelet doré": { 
+        id: "BRA-004", 
+        img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/bracelet%20doré.jpeg" 
+    }
 };
 
 function toggleCart() {
@@ -18,10 +42,18 @@ function toggleCart() {
 }
 
 // 2. AGREGAR AL CARRITO (Detecta el ID automáticamente)
-function addToCart(product, price) {
-    const id = inventaire[product] || "ID-GENERICO"; // Busca el ID en el inventario
-    cart.push({ id, product, price });
+function addToCart(productName, price) {
+    const info = inventaire[productName];
     
+    if (info) {
+        cart.push({ 
+            id: info.id, 
+            product: productName, 
+            price: price, 
+            img: info.img // Guardamos la URL de GitHub aquí
+        });
+    }
+
     document.getElementById("cart-count").innerText = cart.length;
     renderCart();
     document.getElementById("cart-panel").classList.add("active");

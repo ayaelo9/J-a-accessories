@@ -1,6 +1,6 @@
+<!-- Barra de Navegación -->
 <nav class="menu">
-    <!-- El enlace a la portada principal -->
-    <a class="nav-home" href="index.html">🏠 Accueil</a>
+    <a class="nav-home" href="index.html"> Accueil</a>
 
     <div class="dropdown">
         <button class="dropbtn">⭐ Collections</button>
@@ -14,5 +14,54 @@
         </div>
     </div>
 
-    <a class="nav-contact" href="contact.html">✉️ Contact</a>
+    <a class="nav-contact" href="contact.html"> Contact</a>
 </nav>
+
+<!-- Header con Logo y Carrito -->
+<header>
+    <a href="index.html" class="brand-link">
+        <div class="brand">
+            <img src="Logo.png" alt="Logo Jéa Accessoires" class="logo">
+            <h1>Jéa Accessoires</h1>
+        </div>
+    </a>
+    <div class="cart" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+</header>
+
+<!-- Panel del Carrito y Formulario -->
+<div id="cart-panel">
+    <div class="cart-panel-header">
+        <h2>Votre panier</h2>
+        <button class="close-cart" onclick="toggleCart()">×</button>
+    </div>
+    
+    <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
+    <ul id="cart-items"></ul>
+    <p id="cart-total" style="font-weight: bold; text-align: center; margin: 15px 0; font-size: 1.2em;">Total: €0.00</p>
+    
+    <button id="pay-button" class="confirm-order-button" onclick="showCheckoutForm()" style="display:none; margin-bottom: 20px; width: 100%;">Commander</button>
+    
+    <div id="checkout-form" class="checkout-form" style="display:none;">
+        <h3>Informations personnelles</h3>
+        <div class="checkout-group">
+            <label for="customer-name-order">Nom complet</label>
+            <input id="customer-name-order" type="text" placeholder="Nom complet" required>
+        </div>
+        <div class="checkout-group">
+            <label for="customer-phone">Téléphone</label>
+            <input id="customer-phone" type="tel" placeholder="Ex: 0612345678" required>
+        </div>
+        <div class="checkout-group">
+            <label for="customer-address">Adresse de livraison</label>
+            <textarea id="customer-address" rows="3" placeholder="Adresse" required></textarea>
+        </div>
+        <div class="checkout-group payment-note">
+            <p style="font-size: 0.9em; color: #555; background: #f9f9f9; padding: 10px; border-radius: 5px; border-left: 3px solid #ccc;">
+                <strong>Mode de paiement :</strong> Espèces à la livraison
+            </p>
+        </div>
+        <button type="button" class="confirm-order-button" onclick="sendEmail()" style="width: 100%; margin-top: 10px;">
+            Confirmer la commande
+        </button>
+    </div>
+</div>
