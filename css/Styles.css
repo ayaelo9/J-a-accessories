@@ -109,6 +109,7 @@ nav a:focus {
     background: #fbe6eb;
     border-radius: 20px;
     box-shadow: 0 10px 24px rgba(23, 20, 19, 0.08);
+    border-bottom: none !important;
 }
 
 .dropdown {
@@ -673,7 +674,7 @@ button {
 #cart-panel {
     position: fixed;
     top: 0;
-    right: -100%; /* Empieza fuera de la pantalla a la derecha */
+    right: -400px; /* Ajusta según el ancho de tu panela */
     width: 350px; /* O el ancho que prefieras */
     height: 100vh;
     background-color: #fff; /* Mantén tu color de fondo */
