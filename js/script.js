@@ -131,9 +131,9 @@ function sendEmail() {
         .catch(function(error) {
         console.error("Error técnico:", error);
         alert("Sigue fallando: " + error.text);
-        });"Error: " + JSON.stringify(error));
-    });
-}
+        });"Error: " + JSON.stringify(error);
+    };
+
 
 function removeFromCart(index) {
     cart.splice(index, 1);
