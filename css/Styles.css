@@ -132,30 +132,40 @@ nav a:focus {
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 110%; /* Un poco más de espacio hacia abajo */
     left: 50%;
     transform: translateX(-50%);
     background-color: #ffffff;
-    min-width: 220px;
-    width: max-content;
-    text-align: left;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    z-index: 20;
+    
+    /* FUERZA EL ANCHO AQUÍ */
+    min-width: 280px !important; /* Aumentamos de 220 a 280 */
+    width: 280px !important; 
+    
+    text-align: center; /* Se ve más elegante centrado */
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.15); /* Sombra más suave */
+    border-radius: 12px;
+    z-index: 9999; /* Asegura que esté por encima de todo */
+    overflow: hidden; /* Para que el hover respete las esquinas redondeadas */
 }
 
 .dropdown-content a {
     display: block;
-    padding: 12px 20px;
-    transition: background-color 0.3s;
-    font-size: 15px;
+    padding: 15px 20px; /* Más espacio para los dedos en móviles */
+    transition: all 0.3s ease;
+    font-size: 16px; /* Texto un poquito más grande */
     text-decoration: none;
     color: #7a5b5e;
+    border-bottom: 1px solid #f9f4f4; /* Una línea muy fina entre opciones */
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none; /* Quita la línea al último elemento */
 }
 
 .dropdown-content a:hover {
     background-color: #fce4ec;
     color: #a96f7d;
+    padding-left: 25px; /* Efecto de movimiento al pasar el mouse */
 }
 
 .dropdown:hover .dropdown-content {
