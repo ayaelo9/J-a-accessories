@@ -10,49 +10,6 @@
 </head>
 <body>
 
-<header>
-    <a href="index.html" class="brand-link">
-        <div class="brand">
-            <img src="Logo.png" alt="Logo Joia Accessoires" class="logo">
-            <h1>Joia Accessoires</h1>
-        </div>
-    </a>
-    <div class="cart" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
-</header>
-
-<div id="cart-panel">
-    <div class="cart-panel-header">
-        <h2>Votre panier</h2>
-        <button class="close-cart" onclick="toggleCart()">×</button>
-    </div>
-    <p id="cart-empty" class="cart-empty">Aucun produit dans votre panier.</p>
-    <ul id="cart-items"></ul>
-    
-    <div id="checkout-form" class="checkout-form">
-        <h3>Informations personnelles</h3>
-        <div class="checkout-group">
-            <label for="customer-name-order">Nom complet</label>
-            <input id="customer-name-order" type="text" placeholder="Nom complet">
-            <p id="cart-total" style="font-weight: bold; text-align: center; margin: 15px 0;">Total: €0.00</p>
-        </div>
-        <div class="checkout-group">
-            <label for="customer-phone">Téléphone</label>
-            <input id="customer-phone" type="tel" placeholder="Ex: 0612345678" pattern="[0-9]{8,15}" title="Veuillez entrer un numéro de téléphone valide">
-        </div>
-        <div class="checkout-group">
-            <label for="customer-address">Adresse de livraison</label>
-            <textarea id="customer-address" rows="3" placeholder="Adresse"></textarea>
-        </div>
-
-        <div class="checkout-group payment-note">
-            <p style="font-size: 0.9em; color: #555; background: #f9f9f9; padding: 10px; border-radius: 5px; border-left: 3px solid #ccc;">
-                <strong>Mode de paiement :</strong> Espèces à la livraison
-            </p>
-        </div>
-
-        <button type="button" class="confirm-order-button" onclick="confirmOrder()">Confirmer la commande</button>
-    </div>
-</div>
 <header> 
     {% include nav.html %}
 </header>
@@ -63,7 +20,7 @@
     <div class="contact-grid">
         <div>
             <strong>Email :</strong>
-            <p>contact@joia-accessoires.ma</p>
+            <p><a href="mailto:jeaaccessories76@gmail.com">jeaaccessories76@gmail.com</a></p>
         </div>
         <div>
             <strong>Téléphone :</strong>

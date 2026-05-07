@@ -407,12 +407,14 @@ function sendEmail() {
 
     const name = document.getElementById("customer-name-order").value.trim();
 
+    const email = document.getElementById("customer-email").value.trim(); 
+
     const phone = document.getElementById("customer-phone").value.trim();
 
     const address = document.getElementById("customer-address").value.trim();
 
     // VALIDATION
-    if (!name || !phone || !address) {
+    if (!name || !email || !phone || !address) {
 
         alert("Veuillez remplir tous les champs.");
 
@@ -445,6 +447,8 @@ function sendEmail() {
 
         from_name: name,
 
+        customer_email: email,
+
         order_id: "#" + Math.floor(Math.random() * 1000000),
 
         orders: orders,
@@ -471,6 +475,14 @@ function sendEmail() {
         console.log("Commande envoyée :", response);
 
         alert("Merci ! Votre commande a été confirmée.");
+
+        document.getElementById("checkout-form").style.display = "none";
+        
+        // 2. Mostramos tu nueva ENCUESTA personalizada
+        document.getElementById("order-success").style.display = "block";
+        
+        // 3. Scroll suave hacia la encuesta
+        document.getElementById("order-success").scrollIntoView({ behavior: 'smooth' });
 
         // RESET
         cart = [];
@@ -526,3 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "s";
     }
 });
+
+function openMail() {
+    window.location.href = "mailto:jeaaccessories76@gmail.com";
+}

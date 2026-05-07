@@ -72,5 +72,53 @@
     </script>
     <!-- Footer y Scripts omitidos por brevedad, mantenlos igual -->
     <script src="js/script.js"></script>
+
+            <section id="order-success" style="display:none; max-width: 500px; margin: 30px auto; padding: 25px; background: #fff; border-radius: 20px; border: 2px solid #458500; font-family: sans-serif; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+        
+        <h1 style="text-align: center; color: #458500; margin-bottom: 5px;">Jéa accessories 💕</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">Merci pour votre confiance !</p>
+
+        <script type="text/javascript">
+            var submitted = false;
+            function handleFormSubmit() {
+            if(submitted) {
+                alert("Merci ! Votre avis a été enregistré.");
+                location.reload(); 
+            }
+            }
+        </script>
+        
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="handleFormSubmit()"></iframe>
+
+        <form action="https://docs.google.com/forms/u/6/d/e/1FAIpQLScsAKGWd2LiJ6Uuiendv5Vxeb7WNu8qvgq5mGDiSxnsk-SYug/formResponse" 
+                method="POST" 
+                target="hidden_iframe" 
+                onsubmit="submitted=true;">
+
+            <div style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Nom</label>
+            <input type="text" name="entry.2090301226" placeholder="Votre nom" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;" required>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+            <p style="font-weight: bold; margin-bottom: 10px;">Comment évalueriez-vous notre service ?</p>
+            <label style="display: block; padding: 5px 0;"><input type="radio" name="entry.262013350" value="Excellent" required> Excellent</label>
+            <label style="display: block; padding: 5px 0;"><input type="radio" name="entry.262013350" value="Très bien"> Très bien</label>
+            <label style="display: block; padding: 5px 0;"><input type="radio" name="entry.262013350" value="Bien"> Bien</label>
+            <label style="display: block; padding: 5px 0;"><input type="radio" name="entry.262013350" value="Moyen"> Moyen</label>
+            <label style="display: block; padding: 5px 0;"><input type="radio" name="entry.262013350" value="Mauvais"> Mauvais</label>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Que pouvons-nous améliorer ?</label>
+            <textarea name="entry.1178138717" placeholder="Vos suggestions..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; height: 80px;"></textarea>
+            </div>
+
+            <button type="submit" style="width: 100%; padding: 15px; background: #e6b6b9; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px;">
+            Envoyer 💌
+            </button>
+
+        </form>
+        </section>
 </body>
 </html>
