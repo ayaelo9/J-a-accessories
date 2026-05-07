@@ -171,13 +171,25 @@
 
 
 
-let cart = [];
+// ===============================
+// JÉA ACCESSOIRES - SCRIPT CLEAN
+// ===============================
 
+// -------------------------------
 // INITIALISATION EMAILJS
+// -------------------------------
 emailjs.init("sEuta_gO53voXjO8M");
 
-// 1. INVENTAIRE
+// -------------------------------
+// PANIER
+// -------------------------------
+let cart = [];
+
+// -------------------------------
+// INVENTAIRE
+// -------------------------------
 const inventaire = {
+
     "Collier de fleur": {
         id: "COL-001",
         img: "https://raw.githubusercontent.com/ayaelo9/J-a-accessories/main/collier%20de%20Fleur.jpeg"
@@ -219,7 +231,11 @@ const inventaire = {
     }
 };
 
+// ===============================
+// OUVRIR / FERMER PANIER
+// ===============================
 function toggleCart() {
+
     const panel = document.getElementById("cart-panel");
 
     if (panel) {
@@ -227,35 +243,24 @@ function toggleCart() {
     }
 }
 
-// 2. AJOUTER AU PANIER
+// ===============================
+// AJOUTER AU PANIER
+// ===============================
 function addToCart(productName, price) {
 
     const info = inventaire[productName];
 
-    if (info) {
+    const item = {
+        id: info ? info.id : "GEN-000",
+        product: productName,
+        price: Number(price),
+        img: info ? info.img : "",
+        quantity: 1
+    };
 
-        cart.push({
-            id: info.id,
-            product: productName,
-            price: price,
-            img: info.img
-        });
+    cart.push(item);
 
-    } else {
-
-        cart.push({
-            id: "GEN-000",
-            product: productName,
-            price: price,
-            img: ""
-        });
-    }
-
-    const countElem = document.getElementById("cart-count");
-
-    if (countElem) {
-        countElem.innerText = cart.length;
-    }
+    updateCartCount();
 
     renderCart();
 
@@ -266,6 +271,21 @@ function addToCart(productName, price) {
     }
 }
 
+// ===============================
+// METTRE À JOUR LE COMPTEUR
+// ===============================
+function updateCartCount() {
+
+    const countElem = document.getElementById("cart-count");
+
+    if (countElem) {
+        countElem.innerText = cart.length;
+    }
+}
+
+// ===============================
+// AFFICHER LE PANIER
+// ===============================
 function renderCart() {
 
     const itemsList = document.getElementById("cart-items");
@@ -278,10 +298,12 @@ function renderCart() {
 
     itemsList.innerHTML = "";
 
+    // PANIER VIDE
     if (cart.length === 0) {
 
         emptyMessage.style.display = "block";
-        totalText.textContent = "Total: €0.00";
+
+        totalText.textContent = "Total : €0.00";
 
         if (payBtn) {
             payBtn.style.display = "none";
@@ -296,7 +318,7 @@ function renderCart() {
 
     emptyMessage.style.display = "none";
 
-    if (payBtn && (!checkoutForm || checkoutForm.style.display !== "block")) {
+    if (payBtn) {
         payBtn.style.display = "block";
     }
 
@@ -304,125 +326,65 @@ function renderCart() {
 
     cart.forEach((item, index) => {
 
+        total += item.price;
+
         const li = document.createElement("li");
 
         li.style.display = "flex";
         li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
         li.style.marginBottom = "10px";
 
         li.innerHTML = `
-            <span>
-                <strong>[${item.id}]</strong> ${item.product}
-            </span>
+            <div>
+                <strong>[${item.id}]</strong>
+                ${item.product}
+            </div>
 
-            <span>
+            <div>
                 €${item.price.toFixed(2)}
 
                 <button
                     onclick="removeFromCart(${index})"
-                    style="color:red; background:none; border:none; cursor:pointer; margin-left:10px;"
+                    style="
+                        margin-left:10px;
+                        border:none;
+                        background:none;
+                        color:red;
+                        cursor:pointer;
+                        font-size:16px;
+                    "
                 >
                     ✕
                 </button>
-            </span>
+            </div>
         `;
 
         itemsList.appendChild(li);
-
-        total += item.price;
     });
 
-    totalText.textContent = `Total: €${total.toFixed(2)}`;
+    totalText.textContent = `Total : €${total.toFixed(2)}`;
 }
 
-// 3. ENVOI EMAIL
-function sendEmail() {
-
-    const name = document.getElementById("customer-name-order").value;
-    const phone = document.getElementById("customer-phone").value;
-    const address = document.getElementById("customer-address").value;
-
-    if (!name || !phone || !address) {
-
-        alert("Veuillez remplir tous les champs.");
-
-        return;
-    }
-
-    const listaProductos = cart.map(item => ({
-        name: item.product,
-        units: 1,
-        price: item.price.toFixed(2),
-        image_url: item.img
-    }));
-
-    const totalCalculado = cart
-        .reduce((sum, item) => sum + item.price, 0)
-        .toFixed(2);
-
-    const templateParams = {
-
-        from_name: name,
-
-        order_id: "#" + Math.floor(Math.random() * 1000000),
-
-        orders: listaProductos,
-
-        phone: phone,
-
-        address: address,
-
-        shipping: "0.00",
-
-        total: totalCalculado
-    };
-
-    const serviceID = "service_rb1xshi";
-    const templateID = "template_t99h5yw";
-
-    console.log("Service ID:", serviceID);
-
-    emailjs.send(serviceID, templateID, templateParams)
-
-    .then(function(response) {
-
-        console.log("Commande envoyée !", response);
-
-        alert("Merci ! Votre commande a été confirmée.");
-
-        cart = [];
-
-        renderCart();
-
-        window.location.reload();
-    })
-
-    .catch(function(error) {
-
-        console.error("Erreur EmailJS:", error);
-
-        alert("Erreur : " + error.text);
-    });
-}
-
-// 4. SUPPRIMER PRODUIT
+// ===============================
+// SUPPRIMER DU PANIER
+// ===============================
 function removeFromCart(index) {
 
     cart.splice(index, 1);
 
-    const countElem = document.getElementById("cart-count");
-
-    if (countElem) {
-        countElem.innerText = cart.length;
-    }
+    updateCartCount();
 
     renderCart();
 }
 
-// 5. AFFICHER FORMULAIRE
+// ===============================
+// AFFICHER FORMULAIRE
+// ===============================
 function showCheckoutForm() {
 
     const form = document.getElementById("checkout-form");
+
     const payBtn = document.getElementById("pay-button");
 
     if (form && payBtn) {
@@ -438,7 +400,99 @@ function showCheckoutForm() {
     }
 }
 
-// 6. FILTRAGE PAR URL
+// ===============================
+// ENVOYER EMAIL
+// ===============================
+function sendEmail() {
+
+    const name = document.getElementById("customer-name-order").value.trim();
+
+    const phone = document.getElementById("customer-phone").value.trim();
+
+    const address = document.getElementById("customer-address").value.trim();
+
+    // VALIDATION
+    if (!name || !phone || !address) {
+
+        alert("Veuillez remplir tous les champs.");
+
+        return;
+    }
+
+    // PANIER VIDE
+    if (cart.length === 0) {
+
+        alert("Votre panier est vide.");
+
+        return;
+    }
+
+    // PRODUITS EMAILJS
+    const orders = cart.map(item => ({
+        name: item.product,
+        units: item.quantity,
+        price: item.price.toFixed(2),
+        image_url: item.img
+    }));
+
+    // TOTAL
+    const total = cart
+        .reduce((sum, item) => sum + item.price, 0)
+        .toFixed(2);
+
+    // PARAMÈTRES TEMPLATE
+    const templateParams = {
+
+        from_name: name,
+
+        order_id: "#" + Math.floor(Math.random() * 1000000),
+
+        orders: orders,
+
+        phone: phone,
+
+        address: address,
+
+        shipping: "0.00",
+
+        total: total
+    };
+
+    // EMAILJS IDs
+    const serviceID = "service_rb1xshi";
+
+    const templateID = "template_t99h5yw";
+
+    // ENVOI
+    emailjs.send(serviceID, templateID, templateParams)
+
+    .then(response => {
+
+        console.log("Commande envoyée :", response);
+
+        alert("Merci ! Votre commande a été confirmée.");
+
+        // RESET
+        cart = [];
+
+        updateCartCount();
+
+        renderCart();
+
+        location.reload();
+    })
+
+    .catch(error => {
+
+        console.error("Erreur EmailJS :", error);
+
+        alert("Erreur lors de l'envoi de la commande.");
+    });
+}
+
+// ===============================
+// FILTRAGE PAR CATÉGORIE
+// ===============================
 document.addEventListener("DOMContentLoaded", () => {
 
     const params = new URLSearchParams(window.location.search);
@@ -447,29 +501,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const products = document.querySelectorAll(".card");
 
-    if (category) {
+    if (!category) return;
 
-        products.forEach(product => {
+    products.forEach(product => {
 
-            const productCat = product
-                .getAttribute("data-category")
-                .toLowerCase();
+        const productCat = product
+            .getAttribute("data-category")
+            ?.toLowerCase();
 
-            product.style.display =
-                (productCat === category.toLowerCase())
+        product.style.display =
+            productCat === category.toLowerCase()
                 ? "block"
                 : "none";
-        });
+    });
 
-        const title = document.querySelector(".hero h2");
+    const title = document.querySelector(".hero h2");
 
-        if (title) {
+    if (title) {
 
-            title.textContent =
-                "Nos " +
-                category.charAt(0).toUpperCase() +
-                category.slice(1) +
-                "s";
-        }
+        title.textContent =
+            "Nos " +
+            category.charAt(0).toUpperCase() +
+            category.slice(1) +
+            "s";
     }
 });
