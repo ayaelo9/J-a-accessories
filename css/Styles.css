@@ -102,23 +102,19 @@ nav a:focus {
 }
 
 .menu {
-    display: flex;
+    display: flex !important;
     gap: 30px;
     align-items: center;
     justify-content: center;
     padding: 15px 32px;
     
-    /* ESTO CREA EL ESPACIO A LOS LADOS */
-    margin: 20px 40px; /* 20px arriba/abajo y 40px a los lados */
+    /* MARGEN: 10px arriba, auto a los lados para centrar, 40px abajo para dar espacio */
+    margin: 10px auto 40px auto !important; 
     
     background: #fbe6eb;
-    border-radius: 20px; /* Bordes bien redondeados como la imagen */
-    box-shadow: 0 10px 24px rgba(23, 20, 19, 0.15); /* Sombra para que flote */
-    
-    /* Evita que se estire demasiado en pantallas grandes */
-    width: auto; 
-    max-width: calc(100% - 80px); 
-    align-self: center; /* Lo centra si el contenedor es flex */
+    border-radius: 20px !important; /* Mantiene la forma de pastilla */
+    box-shadow: 0 10px 24px rgba(23, 20, 19, 0.12);
+    width: fit-content !important; /* No permite que se estire a lo ancho */
 }
 
 /* Enlaces del menú */
