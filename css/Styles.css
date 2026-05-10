@@ -226,13 +226,13 @@ nav a:focus {
 
 .contact-section .phone-link {
     color: inherit;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .contact-section .phone-link:hover,
 .contact-section .phone-link:focus {
     text-decoration: none;
-    color: inherit;
+    color: inherit !important;
 }
 
 .brand-link {
@@ -1214,7 +1214,7 @@ select:focus {
     box-shadow: 0 10px 24px rgba(23, 20, 19, 0.08);
     border-bottom: none !important;
     width: fit-content; /* ESTO ES LA CLAVE: Hace que la caja solo ocupe lo que miden los textos */
-    max-width: 90%; /* Para que no se salga de la pantalla en el móvil */
+    max-width: 300px; /* Para que no se salga de la pantalla en el móvil */
 }
 
 /* Color del correo igual al del teléfono */
