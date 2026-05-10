@@ -12,36 +12,37 @@
 
     {% include nav.html %}
 
-<section class="contact-section">
-    <h2>Contactez-nous</h2>
-    <p>Pour toute question ou demande, écrivez-nous. Nous serons ravis de vous accompagner dans votre choix de bijoux.</p>
-    <div class="contact-grid">
-        <div>
-            <strong>Email :</strong>
-            <p><a href="mailto:jeaaccessories76@gmail.com">jeaaccessories76@gmail.com</a></p>
-        </div>
-        <div>
-            <strong>Téléphone :</strong>
-            <p><a class="phone-link" href="tel:+212718718323">+212 718 718 323</a></p>
-        </div>
-        <div>
-            <strong>Adresse :</strong>
-            <p>Salée</p>
-        </div>
+    <div class="welcome-card-container">
+        <section class="contact-section">
+            <h2>Contactez-nous</h2>
+            <p>Pour toute question ou demande, écrivez-nous. Nous serons ravis de vous accompagner dans votre choix de bijoux.</p>
+            <div class="contact-grid">
+                <div>
+                    <strong>Email :</strong>
+                    <p><a href="mailto:jeaaccessories76@gmail.com">jeaaccessories76@gmail.com</a></p>
+                </div>
+                <div>
+                    <strong>Téléphone :</strong>
+                    <p><a class="phone-link" href="tel:+212718718323">+212 718 718 323</a></p>
+                </div>
+                <div>
+                    <strong>Adresse :</strong>
+                    <p>Salée</p>
+                </div>
+            </div>
+            <button class="contact-button" onclick="openMail()">Envoyer un email</button>
+        </section>
     </div>
-    <button class="contact-button" onclick="openMail()">Envoyer un email</button>
-</section>
+    <script>
+    function openMail() {
+        window.location.href = "mailto:contact@joia-accessoires.ma";
+    }
+    </script>
 
-<script>
-function openMail() {
-    window.location.href = "mailto:contact@joia-accessoires.ma";
-}
-</script>
+    <footer class="site-footer">
+        <p>Jéa Accessoires — Bijoux féminins et élégants</p>
+    </footer>
 
-<footer class="site-footer">
-    <p>Jéa Accessoires — Bijoux féminins et élégants</p>
-</footer>
-
-<script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

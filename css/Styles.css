@@ -1080,6 +1080,7 @@ header {
     display: flex;
     justify-content: center;
     background-color: #fce4ec; /* El color rosado de fondo de tu web */
+    min-width: 50vh;
 }
 
 /* La tarjeta blanca con bordes como en image_570444.png */
