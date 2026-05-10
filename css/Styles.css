@@ -1202,33 +1202,16 @@ select:focus {
     flex-direction: column;
 }
 
-.menu {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 32px;
-    margin: 10px auto; /* Centra la "pastilla" con margen arriba y abajo */
-    background: #fbe6eb;
-    border-radius: 10px; /* Tus bordes que te gustan */
-    box-shadow: 0 10px 24px rgba(23, 20, 19, 0.08);
-    border-bottom: none !important;
-    width: fit-content; /* ESTO ES LA CLAVE: Hace que la caja solo ocupe lo que miden los textos */
-    max-width: 300px; /* Para que no se salga de la pantalla en el móvil */
-}
 
 /* Color del correo igual al del teléfono */
 .contact-info a {
-    color: #5d4037 !important; 
+    color: #ffd4d8 !important; 
     text-decoration: none; /* Quita el subrayado azul */
 }
 
-.contact-info a:hover {
-    text-decoration: underline; /* Solo se subraya cuando pasas el ratón */
-}
 /* Esto iguala el correo al teléfono (marrón elegante) */
 .contact-grid a, .phone-link {
-    color: #7a5b5e !important;
+    color: #ffd4d8 !important;
     text-decoration: none !important;
     font-weight: 700 !important;
 }
@@ -1236,13 +1219,4 @@ select:focus {
 .contact-grid a:hover {
     color: #a96f7d !important;
     text-decoration: underline !important;
-}
-
-/* Esto asegura que la "pastilla" del menú esté siempre centrada */
-.menu {
-    display: flex !important;
-    justify-content: center !important;
-    width: fit-content !important;
-    margin: 15px auto !important;
-    float: none !important;
 }
