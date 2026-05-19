@@ -1,5 +1,4 @@
----
----
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +6,9 @@
     <title>collections - Jéa Accessoires</title>
     <link rel="icon" href="Logo.png" type="image/png">
     <link rel="stylesheet" href="css/Styles.css">
-    <link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <!-- Llamada única que trae el Menú, el Logo y el Carrito de nV.HTML -->
     {% include nav.html %}
 
     <section class="hero">
@@ -20,76 +17,190 @@ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.m
     </section>
 
     <section class="products">
-        <!-- Producto 1 -->
         <div class="card" data-name="Collier de fleur" data-category="collier">
-            <img src="collier de Fleur.jpeg" alt="Collier de fleur">
+            <div class="galeria-contenedor">
+                <div class="imagenes-wrapper">
+                    <img src="collier de Fleur.jpeg" class="articulo-img activa" alt="Collier de fleur">
+                    <img src="collection du fleur2.jpeg" class="articulo-img" alt="Collier de fleur 2">
+                </div>
+                <button class="galeria-flecha prev" onclick="cambiarImagenInterna(this, -1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="galeria-flecha next" onclick="cambiarImagenInterna(this, 1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <div class="puntos-navegacion">
+                    <span class="punto activo" onclick="irAFoto(this, 0)"></span>
+                    <span class="punto" onclick="irAFoto(this, 1)"></span>
+                </div>
+            </div>
             <h3>Collier de fleur</h3>
             <div class="rating">★ ★ ★ ★ ☆ <span>4.5</span></div>
             <p>€49.99</p>
-            <button onclick="addToCart('Collier de fleur', 49.99)">Ajouter</button>
+            <button class="add-btn" onclick="addToCart('Collier de fleur', 49.99)">Ajouter</button>
         </div>
 
-        <!-- Producto 2 -->
         <div class="card" data-name="Bracelet chic" data-category="bracelet">
-            <img src="Bracelet.jpeg" alt="Bracelet chic">
+            <div class="galeria-contenedor">
+                <div class="imagenes-wrapper">
+                    <img src="Bracelet.jpeg" class="articulo-img activa" alt="Bracelet chic">
+                    <img src="Bracelet_2.jpeg" class="articulo-img" alt="Bracelet chic 2">
+                </div>
+                <button class="galeria-flecha prev" onclick="cambiarImagenInterna(this, -1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="galeria-flecha next" onclick="cambiarImagenInterna(this, 1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <div class="puntos-navegacion">
+                    <span class="punto activo" onclick="irAFoto(this, 0)"></span>
+                    <span class="punto" onclick="irAFoto(this, 1)"></span>
+                </div>
+            </div>
             <h3>Bracelet chic</h3>
             <div class="rating">★ ★ ★ ★ ☆ <span>4.2</span></div>
             <p>€29.99</p>
-            <button onclick="addToCart('Bracelet chic', 29.99)">Ajouter</button>
+            <button class="add-btn" onclick="addToCart('Bracelet chic', 29.99)">Ajouter</button>
         </div>
 
-        <!-- Producto 3 -->
         <div class="card" data-name="Bracelet de cheville" data-category="bracelet">
-            <img src="bracelet de cheville.jpeg" alt="Bracelet de cheville">
+            <div class="galeria-contenedor">
+                <div class="imagenes-wrapper">
+                    <img src="bracelet de cheville.jpeg" class="articulo-img activa" alt="Bracelet de cheville">
+                    <img src="bracelet de cheville_2.jpeg" class="articulo-img" alt="Bracelet de cheville 2">
+                </div>
+                <button class="galeria-flecha prev" onclick="cambiarImagenInterna(this, -1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="galeria-flecha next" onclick="cambiarImagenInterna(this, 1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <div class="puntos-navegacion">
+                    <span class="punto activo" onclick="irAFoto(this, 0)"></span>
+                    <span class="punto" onclick="irAFoto(this, 1)"></span>
+                </div>
+            </div>
             <h3>Bracelet de cheville</h3>
             <div class="rating">★ ★ ★ ★ ☆ <span>4.6</span></div>
             <p>€34.99</p>
-            <button onclick="addToCart('Bracelet de cheville', 34.99)">Ajouter</button>
+            <button class="add-btn" onclick="addToCart('Bracelet de cheville', 34.99)">Ajouter</button>
         </div>
 
-        <!-- Producto 4 -->
         <div class="card" data-name="Collier papillon" data-category="collier">
-            <img src="collier du papillant.jpeg" alt="Collier papillon">
+            <div class="galeria-contenedor">
+                <div class="imagenes-wrapper">
+                    <img src="collier du papillant.jpeg" class="articulo-img activa" alt="Collier papillon">
+                    <img src="collier du papillant_2.jpeg" class="articulo-img" alt="Collier papillon 2">
+                </div>
+                <button class="galeria-flecha prev" onclick="cambiarImagenInterna(this, -1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="galeria-flecha next" onclick="cambiarImagenInterna(this, 1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <div class="puntos-navegacion">
+                    <span class="punto activo" onclick="irAFoto(this, 0)"></span>
+                    <span class="punto" onclick="irAFoto(this, 1)"></span>
+                </div>
+            </div>
             <h3>Collier papillon</h3>
             <div class="rating">★ ★ ★ ★ ☆ <span>4.8</span></div>
             <p>€59.99</p>
-            <button onclick="addToCart('Collier papillon', 59.99)">Ajouter</button>
+            <button class="add-btn" onclick="addToCart('Collier papillon', 59.99)">Ajouter</button>
         </div>
 
-        <!-- Producto 5 -->
         <div class="card" data-name="Bracelet du vis" data-category="bracelet">
-            <img src="bracelet du vis.jpeg" alt="bracelet du vis">
+            <div class="galeria-contenedor">
+                <div class="imagenes-wrapper">
+                    <img src="bracelet du vis.jpeg" class="articulo-img activa" alt="bracelet du vis">
+                    <img src="bracelet du vis_2.jpeg" class="articulo-img" alt="bracelet du vis 2">
+                </div>
+                <button class="galeria-flecha prev" onclick="cambiarImagenInterna(this, -1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="galeria-flecha next" onclick="cambiarImagenInterna(this, 1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <div class="puntos-navegacion">
+                    <span class="punto activo" onclick="irAFoto(this, 0)"></span>
+                    <span class="punto" onclick="irAFoto(this, 1)"></span>
+                </div>
+            </div>
             <h3>Bracelet du vis</h3>
             <div class="rating">★ ★ ★ ★ ☆ <span>4.7</span></div>
             <p>€54.99</p>
-            <button onclick="addToCart('Bracelet du vis', 54.99)">Ajouter</button>
+            <button class="add-btn" onclick="addToCart('Bracelet du vis', 54.99)">Ajouter</button>
         </div>
 
-        <!-- Producto 6 -->
         <div class="card" data-name="Bracelets du vis" data-category="bracelet">
-            <img src="bracelets du vis 2.jpeg" alt="Bracelet du vis">
+            <div class="galeria-contenedor">
+                <div class="imagenes-wrapper">
+                    <img src="bracelets du vis 2.jpeg" class="articulo-img activa" alt="Bracelet du vis">
+                    <img src="bracelets du vis 2_2.jpeg" class="articulo-img" alt="Bracelet du vis 2">
+                </div>
+                <button class="galeria-flecha prev" onclick="cambiarImagenInterna(this, -1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="galeria-flecha next" onclick="cambiarImagenInterna(this, 1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <div class="puntos-navegacion">
+                    <span class="punto activo" onclick="irAFoto(this, 0)"></span>
+                    <span class="punto" onclick="irAFoto(this, 1)"></span>
+                </div>
+            </div>
             <h3>Bracelets du vis</h3>
             <div class="rating">★ ★ ★ ★ ☆ <span>4.4</span></div>
             <p>€39.99</p>
-            <button onclick="addToCart('Bracelets du vis', 39.99)">Ajouter</button>
+            <button class="add-btn" onclick="addToCart('Bracelets du vis', 39.99)">Ajouter</button>
         </div>
 
-        <!-- Producto 7 -->
         <div class="card" data-name="Collier du cœur" data-category="collier">
-            <img src="collier du cœur.jpeg" alt="Collier coeur">
+            <div class="galeria-contenedor">
+                <div class="imagenes-wrapper">
+                    <img src="colier du coeur.jpeg" class="articulo-img activa" alt="Collier coeur">
+                    <img src="collier du cœur2.jpeg" class="articulo-img" alt="Collier coeur 2">
+                    <img src="collier du cœur.jpeg" class="articulo-img activa" alt="Collier coeur">
+                </div>
+                <button class="galeria-flecha prev" onclick="cambiarImagenInterna(this, -1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                 <button button class="galeria-flecha next" onclick="cambiarImagenInterna(this, 1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <div class="puntos-navegacion">
+                    <span class="punto activo" onclick="irAFoto(this, 0)"></span>
+                    <span class="punto" onclick="irAFoto(this, 1)"></span>
+                    <span class="punto" onclick="irAFoto(this, 2)"></span>
+                </div>
+            </div>
             <h3>Collier du cœur</h3>
             <div class="rating">★ ★ ★ ☆ ☆ <span>4.3</span></div>
             <p>€44.99</p>
-            <button onclick="addToCart('Collier du cœur', 44.99)">Ajouter</button>
+            <button class="add-btn" onclick="addToCart('Collier du cœur', 44.99)">Ajouter</button>
         </div>
 
-        <!-- Producto 8 -->
         <div class="card" data-name="Ensemble fleur" data-category="ensemble">
-            <img src="collection du fleur.jpeg" alt="collection du fleur">
+            <div class="galeria-contenedor">
+                <div class="imagenes-wrapper">
+                    <img src="collection du fleur.jpeg" class="articulo-img activa" alt="collection du fleur">
+                    <img src="collection du fleur_2.jpeg" class="articulo-img" alt="collection du fleur 2">
+                </div>
+                <button class="galeria-flecha prev" onclick="cambiarImagenInterna(this, -1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="galeria-flecha next" onclick="cambiarImagenInterna(this, 1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <div class="puntos-navegacion">
+                    <span class="punto activo" onclick="irAFoto(this, 0)"></span>
+                    <span class="punto" onclick="irAFoto(this, 1)"></span>
+                </div>
+            </div>
             <h3>Collier et boucles d'oreilles</h3>
             <div class="rating">★ ★ ★ ★ ☆ <span>4.5</span></div>
             <p>€42.99</p>
-            <button onclick="addToCart('Ensemble fleur', 42.99)">Ajouter</button>
+            <button class="add-btn" onclick="addToCart('Ensemble fleur', 42.99)">Ajouter</button>
         </div>
     </section>
 
@@ -97,7 +208,6 @@ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.m
         <p>Jéa Accessoires — Bijoux féminins et élégants</p>
     </footer>
 
-    <!-- Scripts esenciales -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function(){

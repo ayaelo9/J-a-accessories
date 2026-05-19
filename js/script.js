@@ -542,3 +542,80 @@ document.addEventListener("DOMContentLoaded", () => {
 function openMail() {
     window.location.href = "mailto:jeaaccessories76@gmail.com";
 }
+
+// Función para cuando hacen clic directamente en un botón redondo (punto)
+function irAFoto(puntoClickeado, indiceDestino) {
+    event.stopPropagation();
+    
+    const contenedor = puntoClickeado.closest('.galeria-contenedor');
+    const imagenes = contenedor.querySelectorAll('.articulo-img');
+    const puntos = contenedor.querySelectorAll('.punto');
+
+    // Quitar la clase activa de todas las imágenes y puntos de ESTA tarjeta
+    imagenes.forEach(img => img.classList.remove('activa'));
+    puntos.forEach(p => p.classList.remove('activo'));
+
+    // Activar la imagen y el punto seleccionados
+    imagenes[indiceDestino].classList.add('activa');
+    puntos[indiceDestino].classList.add('activo');
+}
+
+// Actualización de la función de las flechas para que también mueva los botones de puntos
+function cambiarImagenInterna(boton, direccion) {
+    event.stopPropagation(); 
+    
+    const contenedor = boton.closest('.galeria-contenedor');
+    const imagenes = contenedor.querySelectorAll('.articulo-img');
+    const puntos = contenedor.querySelectorAll('.punto');
+    
+    let indiceActivo = -1;
+
+    imagenes.forEach((img, index) => {
+        if (img.classList.contains('activa')) {
+            indiceActivo = index;
+        }
+    });
+
+    // Quitar estados activos actuales
+    imagenes[indiceActivo].classList.remove('activa');
+    if (puntos.length > 0) puntos[indiceActivo].classList.remove('activo');
+
+    // Calcular nueva posición
+    let nuevoIndice = indiceActivo + direccion;
+    if (nuevoIndice >= imagenes.length) nuevoIndice = 0;
+    if (nuevoIndice < 0) nuevoIndice = imagenes.length - 1;
+
+    // Aplicar nuevos estados activos
+    imagenes[nuevoIndice].classList.add('activa');
+    if (puntos.length > 0) puntos[nuevoIndice].classList.add('activo');
+}
+function irAFoto(puntoClickeado, indiceDestino) {
+    event.stopPropagation();
+    const contenedor = puntoClickeado.closest('.galeria-contenedor');
+    const imagenes = contenedor.querySelectorAll('.articulo-img');
+    const puntos = contenedor.querySelectorAll('.punto');
+    imagenes.forEach(img => img.classList.remove('activa'));
+    puntos.forEach(p => p.classList.remove('activo'));
+    imagenes[indiceDestino].classList.add('activa');
+    puntos[indiceDestino].classList.add('activo');
+}
+
+function cambiarImagenInterna(boton, direccion) {
+    event.stopPropagation(); 
+    const contenedor = boton.closest('.galeria-contenedor');
+    const imagenes = contenedor.querySelectorAll('.articulo-img');
+    const puntos = contenedor.querySelectorAll('.punto');
+    let indiceActivo = -1;
+    imagenes.forEach((img, index) => {
+        if (img.classList.contains('activa')) {
+            indiceActivo = index;
+        }
+    });
+    imagenes[indiceActivo].classList.remove('activa');
+    if (puntos.length > 0) puntos[indiceActivo].classList.remove('activo');
+    let nuevoIndice = indiceActivo + direccion;
+    if (nuevoIndice >= imagenes.length) nuevoIndice = 0;
+    if (nuevoIndice < 0) nuevoIndice = imagenes.length - 1;
+    imagenes[nuevoIndice].classList.add('activa');
+    if (puntos.length > 0) puntos[nuevoIndice].classList.add('activo');
+}
